@@ -4,8 +4,8 @@ class StockLocation(models.Model):
     _inherit = 'stock.location'
 
     stock_capacity = fields.Float(
-        string="Max Capacity by Usama",
-        default=6500,
+        string="Max Capacity",
+        default=6400,
         help="Maximum stock capacity for this location. Set by Usama"
     )
 
