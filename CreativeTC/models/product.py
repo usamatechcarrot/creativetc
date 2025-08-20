@@ -5,7 +5,7 @@ class ProductTemplate(models.Model):
 
     max_capacity = fields.Float(
         string="Maximum Capacity",
-        help="Define the maximum storage capacity for this product."
+        help="Define the maximum storage capacity for this product. by usama"
     )
 
 
