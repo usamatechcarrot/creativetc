@@ -1,13 +1,15 @@
 <odoo>
-    <!-- Form view enhancement -->
+    <!-- Inherit the existing task form view -->
     <record id="view_todo_task_form_inherit" model="ir.ui.view">
         <field name="name">todo.task.form.inherit</field>
-        <field name="model">todo.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_todo.project_task_view_todo_form"/>
         <field name="arch" type="xml">
+            <!-- Insert assigned date after users -->
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="x_studio_assigned_date"/>
             </xpath>
+            <!-- Add a new group for priority and notes -->
             <xpath expr="//sheet/group" position="inside">
                 <group string="Details">
                     <field name="priority"/>
