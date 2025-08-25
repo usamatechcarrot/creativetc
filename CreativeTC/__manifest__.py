@@ -8,7 +8,7 @@
         'views/stock_location_views.xml',
         'views/product_views.xml',
         'views/todo_task_views.xml',
-        'views/employees_form.xml',
+        'views/hr_employees_form.xml',
     ],
     'installable': True,
     'application': False,
