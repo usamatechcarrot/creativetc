@@ -4,5 +4,5 @@ class ProjectTask(models.Model):
 
     date_assigned = fields.Date(
         string="Assigned Date",
-        help="Date when the task was assigned. <Dinesh>"
+        help="Date when the task was assigned. Dinesh"
     )
