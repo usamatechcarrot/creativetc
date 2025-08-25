@@ -17,3 +17,5 @@ class ProductProduct(models.Model):
         store=True,
         readonly=False
     )
+
+    

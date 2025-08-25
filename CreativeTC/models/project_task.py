@@ -1,6 +1,5 @@
 from odoo import models, fields
-
-class ProductTemplate(models.Model):
+class ProjectTask(models.Model):
     _inherit = "project.task"
 
     date_assigned = fields.Date(

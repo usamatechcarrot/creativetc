@@ -1,11 +1,11 @@
-<record id="view_todo_task_form_inherit_date" model="ir.ui.view">
-    <field name="name">project.task.form.inherit.date</field>
+<record id="view_todo_form_inherit_date_assigned" model="ir.ui.view">
+    <field name="name">todo.form.inherit.date.assigned</field>
     <field name="model">project.task</field>
-    <field name="inherit_id" ref="project.view_task_form2"/>  
-    <!-- 👆 replace with the actual todo form external ID if it's custom -->
+    <field name="inherit_id" ref="your_module_id.view_todo_form"/> 
+    <!-- 👆 replace with the external ID of your To-do form view -->
     <field name="arch" type="xml">
-        <!-- Add the field after description -->
-        <xpath expr="//field[@name='description']" position="before">
+        <!-- Insert after Assignees -->
+        <xpath expr="//field[@name='user_ids']" position="after">
             <field name="date_assigned"/>
         </xpath>
     </field>
