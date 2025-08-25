@@ -1,9 +1,8 @@
 <odoo>
-    <!-- Form view enhancement -->
     <record id="view_todo_task_form_inherit" model="ir.ui.view">
         <field name="name">todo.task.form.inherit</field>
         <field name="model">todo.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="inherit_id" ref="project.view_task_form2"/> <!-- Check exact ID -->
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="x_studio_assigned_date"/>
