@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_todo_task_form_inherit" model="ir.ui.view">
+        <field name="name">todo.task.form.inherit</field>
+        <field name="model">todo.task</field>
+        <field name="inherit_id" ref="todo.view_todo_task_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="x_studio_assigned_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
