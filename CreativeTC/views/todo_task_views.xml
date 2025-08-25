@@ -4,8 +4,15 @@
         <field name="model">todo.task</field>
         <field name="inherit_id" ref="todo.view_todo_task_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='user_ids']" position="after">
-                <field name="x_studio_assigned_date"/>
+            <xpath expr="//sheet/group" position="inside">
+                <group string="Assignment">
+                    <field name="user_ids"/>
+                    <field name="x_studio_assigned_date"/>
+                </group>
+                <group string="Details">
+                    <field name="priority"/>
+                    <field name="notes"/>
+                </group>
             </xpath>
         </field>
     </record>
