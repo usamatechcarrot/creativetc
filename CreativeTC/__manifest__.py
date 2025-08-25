@@ -7,7 +7,6 @@
     'data': [
         'views/stock_location_views.xml',
         'views/product_views.xml',
-        'views/project_task.xml',
     ],
     'installable': True,
     'application': False,
