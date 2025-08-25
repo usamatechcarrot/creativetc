@@ -5,7 +5,7 @@
     <!-- 👆 replace with the actual todo form external ID if it's custom -->
     <field name="arch" type="xml">
         <!-- Add the field after description -->
-        <xpath expr="//field[@name='description']" position="after">
+        <xpath expr="//field[@name='description']" position="before">
             <field name="date_assigned"/>
         </xpath>
     </field>
