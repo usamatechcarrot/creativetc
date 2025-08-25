@@ -3,7 +3,7 @@
     'version': '18.0',
     'category': 'Inventory',
     'summary': 'Show progress bar of stock usage in each location',
-    'depends': ['stock','todo'],
+    'depends': ['stock','todo', 'base'],
     'data': [
         'views/stock_location_views.xml',
         'views/product_views.xml',
