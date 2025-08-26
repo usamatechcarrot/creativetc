@@ -1,0 +1,27 @@
+record id="view_employee_form_inherit_attendance" model="ir.ui.view">
+    <field name="name">hr.employee.form.attendance</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_filter"/>
+    <field name="arch" type="xml">
+        <!-- Example: Add new tab -->
+        <notebook position="inside">
+            <page string="Attendances">
+                <field name="attendance_ids" context="{'default_employee_id': active_id}">
+                    <tree editable="bottom">
+                        <field name="check_in"/>
+                        <field name="check_out"/>
+                        <field name="worked_hours"/>
+                    </tree>
+                    <form>
+                        <group>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="worked_hours"/>
+                        </group>
+                    </form>
+                </field>
+            </page>
+        </notebook>
+    </field>
+    
+</record>
