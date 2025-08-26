@@ -8,12 +8,12 @@
                 <page string="Attendance">
                     <field name="attendance_ids" widget="section_and_content">
                         <tree editable="bottom">
-   
+                            <field name="check_in"/>
+                            <field name="check_out"/>   
                         </tree>
                         <form>
                             <group>
-                                <field name="check_in"/>
-                                <field name="check_out"/>
+
                             </group>
                         </form>
                     </field>
