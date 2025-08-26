@@ -1,5 +1,4 @@
 <odoo>
-    <!-- Extend Employee Form to Add Attendance Tab -->
     <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.attendance.minimal</field>
         <field name="model">hr.employee</field>
@@ -7,13 +6,11 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Attendance">
-                    <field name="attendance_ids" mode="tree,form">
-                        <!-- Inline editable tree view -->
+                    <field name="attendance_ids" widget="section_and_content">
                         <tree editable="bottom">
                             <field name="check_in"/>
                             <field name="check_out"/>
                         </tree>
-                        <!-- Inline form view -->
                         <form>
                             <group>
                                 <field name="check_in"/>
