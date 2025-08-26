@@ -5,7 +5,6 @@ class HREmployee(models.Model):
 
     attendance_ids = fields.One2many(
         'hr.attendance',
-        #'employee_id',
-        'candidate_id',
-        string="Attendance Records"
+        'employee_id',
+         string="Attendance Records"
     )
