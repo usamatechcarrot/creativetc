@@ -1,5 +1,31 @@
 <odoo>
-    <!-- Extend Employee Form to Show Attendance Tab -->
+    <!-- Define a tree view for hr.attendance -->
+    <record id="view_hr_attendance_tree_custom" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.custom</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="check_in"/>
+                <field name="check_out"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define a form view for hr.attendance (optional, for inline form) -->
+    <record id="view_hr_attendance_form_custom" model="ir.ui.view">
+        <field name="name">hr.attendance.form.custom</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Extend Employee Form to Add Attendance Tab -->
     <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.attendance</field>
         <field name="model">hr.employee</field>
@@ -7,20 +33,13 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Attendance">
-                    <!-- One2many wrapper -->
                     <field name="attendance_ids" mode="tree,form">
-                        <!-- Tree view for attendance records -->
-                        <tree editable="bottom">
-                            <field name="check_in"/>
-                            <field name="check_out"/>
-                        </tree>
-                        <!-- Form view for individual attendance record -->
-                        <form>
-                            <group>
-                                <field name="check_in"/>
-                                <field name="check_out"/>
-                            </group>
-                        </form>
+                        <tree string="Attendance Records" 
+                              editable="bottom" 
+                              create="true" 
+                              view_id="view_hr_attendance_tree_custom"/>
+                        <form string="Attendance Record" 
+                              view_id="view_hr_attendance_form_custom"/>
                     </field>
                 </page>
             </xpath>
