@@ -9,4 +9,4 @@ class ResPartner(models.Model):
         ('3', '⭐⭐⭐'),
         ('4', '⭐⭐⭐⭐'),
         ('5', '⭐⭐⭐⭐⭐'),
-    ], string="Rating")
+    ], string="Ratingssss")
