@@ -3,7 +3,7 @@ from odoo import models, fields
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    rating = fields.Selection([
+    partner_rating = fields.Selection([
         ('1', '⭐'),
         ('2', '⭐⭐'),
         ('3', '⭐⭐⭐'),
