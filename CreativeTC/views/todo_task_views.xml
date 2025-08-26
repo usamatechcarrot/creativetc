@@ -11,7 +11,7 @@
             </xpath>
             <!-- Add a new group for priority and notes -->
             <xpath expr="//sheet/group" position="inside">
-                <group string="Usama-Dinesh">
+                <group string="Group 1">
                     <field name="priority"/>
                     <field name="notes"/>
                 </group>
