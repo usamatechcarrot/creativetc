@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_employee_form_inherit_testfield" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.testfield</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Find the <field name="name"/> in Employee form and put our field after it -->
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="test_field"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
