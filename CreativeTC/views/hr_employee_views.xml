@@ -6,17 +6,14 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Attendance">
-                    <field name="attendance_ids">
-                        <tree editable="bottom">
-                            <field name="check_in"/>
-                            <field name="check_out"/>
-                        </tree>
-                        <form>
-                            <group>
-                                <field name="check_in"/>
-                                <field name="check_out"/>
-                            </group>
-                        </form>
+                    <field name="attendance_ids"
+                           mode="tree,form"
+                           context="{}"
+                           domain="[]"
+                           options="{'no_create': False}">
+                        <!-- ✅ Reuse existing hr.attendance views -->
+                        <tree ref="hr_attendance.view_attendance_tree"/>
+                        <form ref="hr_attendance.view_attendance_form"/>
                     </field>
                 </page>
             </xpath>
