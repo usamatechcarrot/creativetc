@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Attendance">
                     <!-- One2many wrapper -->
-                    <field name="attendance_ids">
+                    <field name="attendance_ids" mode="tree,form">
                         <!-- Tree view for attendance records -->
                         <tree editable="bottom">
                             <field name="check_in"/>
