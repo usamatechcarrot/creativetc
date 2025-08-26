@@ -1,22 +1,16 @@
 <odoo>
-    <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
-        <field name="name">hr.employee.form.attendance</field>
-        <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <page string="Attendance">
-                    <field name="attendance_ids"
-                           mode="tree,form"
-                           context="{}"
-                           domain="[]"
-                           options="{'no_create': False}">
-                        <!-- ✅ Reuse existing hr.attendance views -->
-                        <tree ref="hr_attendance.view_attendance_tree"/>
-                        <form ref="hr_attendance.view_attendance_form"/>
-                    </field>
-                </page>
-            </xpath>
-        </field>
-    </record>
+  <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
+    <field name="name">hr.employee.form.attendance</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Attendance">
+          <field name="attendance_ids" mode="tree,form"
+                 views="[(ref('hr_attendance.view_attendance_tree'), 'tree'),
+                         (ref('hr_attendance.view_attendance_form'), 'form')]"/>
+        </page>
+      </xpath>
+    </field>
+  </record>
 </odoo>
