@@ -1,13 +1,13 @@
 <odoo>
-    <record id="view_res_partner_form_inherit_partner_rating" model="ir.ui.view">
-        <field name="name">res.partner.form.inherit.partner.rating</field>
+    <record id="view_res_partner_form_inherit_location" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.location</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/notebook/page[@name='sales_purchases']" position="after">
-                <page string="Rating">
+                <page string="Employee Info">
                     <group>
-                        <field name="partner_rating"/>
+                        <field name="preferred_location"/>
                     </group>
                 </page>
             </xpath>
