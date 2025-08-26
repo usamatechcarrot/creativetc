@@ -1,29 +1,31 @@
 <odoo>
     <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.attendance</field>
-        <field name="model">hr.attendance</field>
+        <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Attendances">
-                    <!-- Employee-level info (optional) -->
-                    <!-- <group>
+                    <!-- Optional employee-level info -->
+                    <!--
+                    <group>
                         <field name="last_check_in" readonly="1"/>
                         <field name="last_attendance_worked_hours" readonly="1"/>
-                    </group> -->
+                    </group>
+                    -->
 
                     <!-- One2many tree/form -->
                     <field name="attendance_ids" context="{'default_employee_id': active_id}">
                         <tree editable="bottom">
-                            !<-- <field name="last_check_in"/> -->
-                            !<-- <field name="last_check_out"/> -->
-                            !<-- <field name="expected_hours"/> -->
+                            <field name="last_check_in"/>
+                            <field name="check_out"/>
+                            <field name="expected_hours"/>
                         </tree>
                         <form>
                             <group>
-                               !<-- <field name="last_check_in"/>  -->
-                               !<--<field name="last_check_out"/>  -->
-                               !<-- <field name="expected_hours"/> -->
+                                <field name="last_check_in"/>
+                                <field name="check_out"/>
+                                <field name="expected_hours"/>
                             </group>
                         </form>
                     </field>
@@ -31,8 +33,4 @@
             </xpath>
         </field>
     </record>
-<<<<<<< HEAD
-
-=======
->>>>>>> a0e251aba035a5904a8d12ab690295f1b0bb2caa
 </odoo>
