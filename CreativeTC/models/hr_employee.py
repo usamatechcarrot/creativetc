@@ -8,3 +8,12 @@ class HREmployee(models.Model):
         'employee_id',
         string="Attendance Records"
     )
+
+class HRAttendance(models.Model):
+    _name = 'hr.attendance'
+
+    name = fields.Char(string='Name')
+    employee_id = fields.Many2one(
+        'hr.employee',
+        string='Employee'
+    )
