@@ -1,16 +1,43 @@
 <odoo>
-  <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
-    <field name="name">hr.employee.form.attendance</field>
-    <field name="model">hr.employee</field>
-    <field name="inherit_id" ref="hr.view_employee_form"/>
-    <field name="arch" type="xml">
-      <xpath expr="//notebook" position="inside">
-        <page string="Attendance">
-          <field name="attendance_ids" mode="tree,form"
-                 views="[(ref('hr_attendance.view_attendance_tree'), 'tree'),
-                         (ref('hr_attendance.view_attendance_form'), 'form')]"/>
-        </page>
-      </xpath>
-    </field>
-  </record>
+    <!-- 1. Define Tree View for Attendance inside Employee -->
+    <record id="view_attendance_tree_in_employee" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.in.employee</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="check_in"/>
+                <field name="check_out"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- 2. Define Form View for Attendance inside Employee -->
+    <record id="view_attendance_form_in_employee" model="ir.ui.view">
+        <field name="name">hr.attendance.form.in.employee</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- 3. Extend Employee Form to Show Attendance Tab -->
+    <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
+        <field name="name">hr.employee.form.attendance</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Attendance">
+                    <field name="attendance_ids" mode="tree,form"
+                           views="[(ref('your_module.view_attendance_tree_in_employee'), 'tree'),
+                                   (ref('your_module.view_attendance_form_in_employee'), 'form')]"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>
