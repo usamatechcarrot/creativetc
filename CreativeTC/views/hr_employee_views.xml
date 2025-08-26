@@ -1,18 +1,18 @@
 <odoo>
     <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.attendance</field>
-        <field name="model">hr.employee</field>
+        <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Attendances">
-                    <!-- Show employee-level fields -->
-                    <group>
+                    <!-- Employee-level info (optional) -->
+                    <!-- <group>
                         <field name="last_check_in" readonly="1"/>
-                        <field name="last_check_out" readonly="1"/>
-                    </group>
+                        <field name="last_attendance_worked_hours" readonly="1"/>
+                    </group> -->
 
-                    <!-- Show the related attendance records -->
+                    <!-- One2many tree/form -->
                     <field name="attendance_ids" context="{'default_employee_id': active_id}">
                         <tree editable="bottom">
                             !<-- <field name="last_check_in"/> -->
@@ -31,5 +31,8 @@
             </xpath>
         </field>
     </record>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a0e251aba035a5904a8d12ab690295f1b0bb2caa
 </odoo>
