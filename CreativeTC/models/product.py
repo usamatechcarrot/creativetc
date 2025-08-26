@@ -4,7 +4,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     max_capacity = fields.Float(
-        string="Define Maximum Capacity",
+        string="Maximum Capacity",
         help="Define the maximum storage capacity for this product. by usama"
     )
 

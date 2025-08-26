@@ -6,4 +6,4 @@ class ProductTemplate(models.Model):
     origin_country = fields.Selection([
         ('india', 'India'),
         ('uae', 'UAE'),
-    ], string="Origin Country")
+    ], string="Origin Country:")
