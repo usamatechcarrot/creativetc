@@ -12,7 +12,8 @@
                         </tree>
                         <form>
                             <group>
-
+                                <field name="check_in"/>
+                                <field name="check_out"/>
                             </group>
                         </form>
                     </field>
