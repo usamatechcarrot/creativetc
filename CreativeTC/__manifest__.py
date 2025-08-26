@@ -11,6 +11,7 @@
         'views/todo_task_views.xml',
         'views/res_partner_view.xml',
         'views/product_template_view.xml',
+        
     ],
     'installable': True,
     'application': False,
