@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
             <!-- Find the <field name="name"/> in Employee form and put our field after it -->
-            <xpath expr="//field[@name='name']" position="after">
+            <xpath expr="//field[@name='job_title']" position="after">
                 <field name="test_field"/>
             </xpath>
         </field>
