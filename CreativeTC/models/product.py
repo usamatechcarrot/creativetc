@@ -8,7 +8,6 @@ class ProductTemplate(models.Model):
         help="Define the maximum storage capacity for this product. by usama"
     )
 
-
 class ProductProduct(models.Model):
     _inherit = "product.product"
 

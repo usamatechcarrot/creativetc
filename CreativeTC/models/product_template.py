@@ -7,4 +7,3 @@ class ProductTemplate(models.Model):
         ('india', 'India'),
         ('uae', 'UAE'),
     ], string="Origin Country:")
-    
