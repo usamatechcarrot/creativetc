@@ -1,4 +1,4 @@
-<odoo>
+<!-- <odoo>
     <record id="view_res_partner_form_inherit_partner_rating" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.partner.rating</field>
         <field name="model">res.partner</field>
@@ -13,4 +13,4 @@
             </xpath>
         </field>
     </record>
-</odoo>
+</odoo> -->
