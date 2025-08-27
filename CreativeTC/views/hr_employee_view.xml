@@ -20,7 +20,6 @@
                         <field name="experience_text" readonly="1"/>
                     </group>
                 </group>
-                </group>
             </xpath>
         </field>
     </record>
