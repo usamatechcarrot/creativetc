@@ -6,6 +6,7 @@ class Employee(models.Model):
     _inherit = 'hr.employee'
 
     test_field = fields.Char(string="This is a test field")
+
  # You can type the employee's joining date here
     joining_date = fields.Date(string="Joining Date")
 
@@ -15,7 +16,8 @@ class Employee(models.Model):
         compute="_compute_experience_years",
         store=True  # set to False if you want it to always compute on the fly
     )
-     @api.depends('joining_date')
+
+    @api.depends('joining_date')
     def _compute_experience_years(self):
         for rec in self:
             if rec.joining_date:
