@@ -12,7 +12,8 @@
 
             <!-- Put both fields just below Job Position -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <group col="2">
+                <group col="3">
+                <field name="test_field" placeholder="Test:- Enter your location here..."/>
                 <field name="joining_date" placeholder="Select joining date"/>
                 <field name="experience_text" readonly="1"/>
                 </group>
