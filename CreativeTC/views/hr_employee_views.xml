@@ -1,4 +1,5 @@
 <odoo>
+    <!-- Inherit Employee form and add tab -->
     <record id="view_employee_form_inherit_daily_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.daily.attendance</field>
         <field name="model">hr.employee</field>
@@ -6,24 +7,39 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Daily Attendance">
-                    <field name="attendance_line_ids" nolabel="1" mode="tree,form">
-                        <tree string="Daily Attendance">
-                            <field name="date"/>
-                            <field name="check_in"/>
-                            <field name="check_out"/>
-                            <field name="status"/>
-                        </tree>
-                        <form string="Daily Attendance">
-                            <group>
-                                <field name="date"/>
-                                <field name="check_in"/>
-                                <field name="check_out"/>
-                                <field name="status"/>
-                            </group>
-                        </form>
-                    </field>
+                    <field name="attendance_line_ids" mode="tree,form" nolabel="1"/>
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <!-- Tree view for employee.attendance.line -->
+    <record id="view_employee_attendance_line_tree" model="ir.ui.view">
+        <field name="name">employee.attendance.line.tree</field>
+        <field name="model">employee.attendance.line</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Attendance">
+                <field name="date"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for employee.attendance.line -->
+    <record id="view_employee_attendance_line_form" model="ir.ui.view">
+        <field name="name">employee.attendance.line.form</field>
+        <field name="model">employee.attendance.line</field>
+        <field name="arch" type="xml">
+            <form string="Daily Attendance">
+                <group>
+                    <field name="date"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                    <field name="status"/>
+                </group>
+            </form>
         </field>
     </record>
 </odoo>
