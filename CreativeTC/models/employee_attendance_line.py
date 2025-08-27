@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields
 from datetime import datetime, date, timedelta, time
 
 class EmployeeAttendanceLine(models.Model):

@@ -1,10 +1,11 @@
 <odoo>
-    <!-- Tree view for employee.attendance.line -->
+    <!-- Tree View for Attendance Lines -->
     <record id="view_employee_attendance_line_tree" model="ir.ui.view">
         <field name="name">employee.attendance.line.tree</field>
         <field name="model">employee.attendance.line</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="employee_id"/>
                 <field name="date"/>
                 <field name="check_in"/>
                 <field name="check_out"/>
@@ -13,23 +14,39 @@
         </field>
     </record>
 
-    <!-- Form view for employee.attendance.line -->
+    <!-- Form View for Attendance Lines -->
     <record id="view_employee_attendance_line_form" model="ir.ui.view">
         <field name="name">employee.attendance.line.form</field>
         <field name="model">employee.attendance.line</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="date"/>
-                    <field name="check_in"/>
-                    <field name="check_out"/>
-                    <field name="status"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="date"/>
+                        <field name="check_in"/>
+                        <field name="check_out"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Inherit Employee form to add tab -->
+    <!-- Action to Open Attendance Lines -->
+    <record id="action_employee_attendance_line" model="ir.actions.act_window">
+        <field name="name">Attendance Lines</field>
+        <field name="res_model">employee.attendance.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_employee_attendance_root" name="Attendance" sequence="10"/>
+    <menuitem id="menu_employee_attendance_line" name="Attendance Lines"
+              parent="menu_employee_attendance_root"
+              action="action_employee_attendance_line"/>
+
+    <!-- Inherit Employee Form to Add Attendance Tab -->
     <record id="view_employee_form_inherit_daily_attendance" model="ir.ui.view">
         <field name="name">hr.employee.form.daily.attendance</field>
         <field name="model">hr.employee</field>
@@ -37,7 +54,14 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Daily Attendance">
-                    <field name="attendance_line_ids" nolabel="1"/>
+                    <field name="attendance_line_ids">
+                        <tree editable="bottom">
+                            <field name="date"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
                 </page>
             </notebook>
         </field>
