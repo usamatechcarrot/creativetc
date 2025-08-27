@@ -13,7 +13,7 @@
             <!-- Put both fields just below Job Position -->
             <xpath expr="//field[@name='job_title']" position="after">
                  <!-- Horizontal group -->
-                <group string="Employment Info">
+                <group string="Employment Info" class="o_horizontal_field_group">
                     <group inline="True">
                         <field name="test_field" placeholder="Test:- Free Text..." />
                         <field name="joining_date" placeholder="Select joining date" />
