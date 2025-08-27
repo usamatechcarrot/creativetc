@@ -41,7 +41,7 @@ class Employee(models.Model):
 
 # Multiple choice / option for Location and Client...
 
-main_choice = fields.Selection([
+    main_choice = fields.Selection([
         ('button1', 'Button 1'),
         ('button2', 'Button 2'),
     ], string="Main Choice")
