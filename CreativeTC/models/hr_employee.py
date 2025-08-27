@@ -48,7 +48,10 @@ class Employee(models.Model):
         ('button2', 'Button 2 - UAE'),
     ], string="Location:")
 
-    dependent_choice = fields.Selection(string="Client:")
+    dependent_choice = fields.Selection(
+        selection=[],
+        string="Client:"
+    )
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
