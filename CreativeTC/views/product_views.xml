@@ -1,11 +1,24 @@
 <odoo>
-    <record id="view_product_form_inherit_capacity" model="ir.ui.view">
-        <field name="name">product.template.form.capacity</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
+        <field name="name">hr.employee.form.attendance.minimal</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/notebook/page[@name='general_information']/group/group" position="inside">
-                <field name="max_capacity"/>
+            <xpath expr="//notebook" position="inside">
+                <page string="Attendance">
+                    <field name="attendance_ids" widget="one2many_list">
+                        <tree editable="bottom">
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                            </group>
+                        </form>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

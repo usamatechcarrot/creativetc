@@ -1,18 +1,11 @@
 <odoo>
-    <record id="view_employee_form_inherit" model="ir.ui.view">
-        <field name="name">hr.employee.form.inherit</field>
-        <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form" />
+    <record id="view_product_form_inherit_capacity" model="ir.ui.view">
+        <field name="name">product.template.form.capacity</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <group string="hr.attendance">
-                    <field name="attendance_ids">
-                        <tree editable="bottom">
-                            <field name="check_in"/>
-                            
-                        </tree>
-                    </field>
-                </group>
+            <xpath expr="//sheet/notebook/page[@name='general_information']/group/group" position="inside">
+                <field name="max_capacity"/>
             </xpath>
         </field>
     </record>
