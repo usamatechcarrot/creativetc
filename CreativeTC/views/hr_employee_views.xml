@@ -1,24 +1,10 @@
 <odoo>
-    <!-- Inherit Employee form and add tab -->
-    <record id="view_employee_form_inherit_daily_attendance" model="ir.ui.view">
-        <field name="name">hr.employee.form.daily.attendance</field>
-        <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="arch" type="xml">
-            <notebook position="inside">
-                <page string="Daily Attendance">
-                    <field name="attendance_line_ids" mode="tree,form" nolabel="1"/>
-                </page>
-            </notebook>
-        </field>
-    </record>
-
     <!-- Tree view for employee.attendance.line -->
     <record id="view_employee_attendance_line_tree" model="ir.ui.view">
         <field name="name">employee.attendance.line.tree</field>
         <field name="model">employee.attendance.line</field>
         <field name="arch" type="xml">
-            <tree string="Daily Attendance">
+            <tree>
                 <field name="date"/>
                 <field name="check_in"/>
                 <field name="check_out"/>
@@ -32,7 +18,7 @@
         <field name="name">employee.attendance.line.form</field>
         <field name="model">employee.attendance.line</field>
         <field name="arch" type="xml">
-            <form string="Daily Attendance">
+            <form>
                 <group>
                     <field name="date"/>
                     <field name="check_in"/>
@@ -40,6 +26,20 @@
                     <field name="status"/>
                 </group>
             </form>
+        </field>
+    </record>
+
+    <!-- Inherit Employee form to add tab -->
+    <record id="view_employee_form_inherit_daily_attendance" model="ir.ui.view">
+        <field name="name">hr.employee.form.daily.attendance</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Daily Attendance">
+                    <field name="attendance_line_ids" nolabel="1"/>
+                </page>
+            </notebook>
         </field>
     </record>
 </odoo>
