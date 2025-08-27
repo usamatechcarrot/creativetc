@@ -24,10 +24,9 @@
 
             <!-- Place after Job Title -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <group string="Dependent Fields Example" col="2">
+                <group string="Dependent Fields Example">
                     <field name="main_choice"/>
-                     <field name="dependent_choice" domain="[('location', '=', main_choice)]"/>
-                    <!-- <field name="dependent_choice"/> -->
+                    <field name="dependent_choice"/>
                 </group>
             </xpath>
         </field>

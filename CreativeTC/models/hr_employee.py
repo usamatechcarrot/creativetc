@@ -3,17 +3,6 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 
-class ClientOption(models.Model):
-    _name = 'client.option'
-    _description = "Client Option"
-
-    name = fields.Char("Client Name")
-    location = fields.Selection([
-        ('button1', 'India'),
-        ('button2', 'UAE'),
-    ], string="Location")
-
-
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
@@ -53,36 +42,49 @@ class Employee(models.Model):
 # Multiple choice / option for Location and Client...
 
 
+
     main_choice = fields.Selection([
         ('button1', 'Button 1 - India'),
         ('button2', 'Button 2 - UAE'),
     ], string="Location:")
 
-    dependent_choice = fields.Many2one(
-        'client.option',
-        string="Client"
+    dependent_choice = fields.Selection(
+        # selection=[],
+        selection=lambda self: self._get_dependent_choices(),
+        string="Client:"
     )
-    # dependent_choice = fields.Selection(
-    #     selection=[],
-    #     string="Client:"
-    # )
+
+    def _get_dependent_choices(self):
+        if self and self.main_choice == 'button1':
+            return [
+            ('hydrabad', 'Hyderabad'),
+            ('chennai', 'Chennai'),
+            ('noida', 'Noida'),
+        ]
+        elif self and self.main_choice == 'button2':
+            return [
+            ('dubai_afg', 'Dubai-AFG'),
+            ('dubai_dha', 'Dubai-DHA'),
+            ('abudhabi', 'Abu Dhabi-Etihad'),
+        ]
+        return []
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
-        if self.main_choice == 'button1':
-            self._fields['dependent_choice'].selection = [
-                ('hydrabad', 'Hyderabad'),
-                ('chennai', 'Chennai'),
-                ('noida', 'Noida'),
-            ]
-        elif self.main_choice == 'button2':
-            self._fields['dependent_choice'].selection = [
-                ('dubai_afg', 'Dubai-AFG'),
-                ('dubai_dha', 'Dubai-DHA'),
-                ('abudhabi', 'Abu Dhabi-Etihad'),
-            ]
-        else:
-            self._fields['dependent_choice'].selection = []
+    #     if self.main_choice == 'button1':
+    #         self._fields['dependent_choice'].selection = [
+    #             ('hydrabad', 'Hyderabad'),
+    #             ('chennai', 'Chennai'),
+    #             ('noida', 'Noida'),
+    #         ]
+    #     elif self.main_choice == 'button2':
+    #         self._fields['dependent_choice'].selection = [
+    #             ('dubai_afg', 'Dubai-AFG'),
+    #             ('dubai_dha', 'Dubai-DHA'),
+    #             ('abudhabi', 'Abu Dhabi-Etihad'),
+    #         ]
+    #     else:
+    #         self._fields['dependent_choice'].selection = []
         self.dependent_choice = False
 
 
