@@ -42,8 +42,8 @@ class Employee(models.Model):
 # Multiple choice / option for Location and Client...
 
     main_choice = fields.Selection([
-        ('button1', 'Button 1 - India'),
-        ('button2', 'Button 2 - UAE'),
+        ('button1', 'Button 1'),
+        ('button2', 'Button 2'),
     ], string="Location:")
 
     dependent_choice = fields.Selection([], string="Client: ")
