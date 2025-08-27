@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <!-- Find the <field name="name"/> in Employee form and put our field after it -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <field name="test_field"/>
+            <field name="test_field" placeholder="Enter your test value here..."/>
             </xpath>
         </field>
     </record>
