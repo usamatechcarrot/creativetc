@@ -46,16 +46,19 @@ main_choice = fields.Selection([
         ('button2', 'Button 2'),
     ], string="Main Choice")
 
-    # dependent_choice = fields.Selection([], string="Dependent Choice")
+    dependent_choice = fields.Selection([('abc1', 'ABC Option 1'),
+        ('abc2', 'ABC Option 2'),
+        ('xyz1', 'XYZ Option 1'),
+        ('xyz2', 'XYZ Option 2'),], string="Dependent Choice")
 
-    # @api.onchange('main_choice')
-    # def _onchange_main_choice(self):
-    #     if self.main_choice == 'button1':
-    #         self.dependent_choice = False
-    #         return {'domain': {'dependent_choice': [('value', 'in', ['abc1', 'abc2', 'abc3'])]}}
-    #     elif self.main_choice == 'button2':
-    #         self.dependent_choice = False
-    #         return {'domain': {'dependent_choice': [('value', 'in', ['xyz1', 'xyz2', 'xyz3'])]}}
-    #     else:
-    #         self.dependent_choice = False
-    #         return {'domain': {'dependent_choice': []}}
+    @api.onchange('main_choice')
+    def _onchange_main_choice(self):
+        if self.main_choice == 'button1':
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': [('value', 'in', ['abc1', 'abc2', 'abc3'])]}}
+        elif self.main_choice == 'button2':
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': [('value', 'in', ['xyz1', 'xyz2', 'xyz3'])]}}
+        else:
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': []}}
