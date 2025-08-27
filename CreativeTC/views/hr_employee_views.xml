@@ -1,25 +1,21 @@
 <odoo>
-    <record id="view_employee_form_inherit_attendance" model="ir.ui.view">
-        <field name="name">hr.employee.form.attendance.minimal</field>
+    <record id="view_employee_form_inherit_attendance_tab" model="ir.ui.view">
+        <field name="name">hr.employee.form.attendance.tab</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <page string="Attendance">
-                    <field name="attendance_ids" widget="one2many_list">
-                        <tree editable="bottom">
+            <notebook position="inside">
+                <page string="Daily Attendance">
+                    <field name="attendance_line_ids" nolabel="1" widget="one2many_list">
+                        <tree editable="false">
+                            <field name="date"/>
                             <field name="check_in"/>
                             <field name="check_out"/>
+                            <field name="status"/>
                         </tree>
-                        <form>
-                            <group>
-                                <field name="check_in"/>
-                                <field name="check_out"/>
-                            </group>
-                        </form>
                     </field>
                 </page>
-            </xpath>
+            </notebook>
         </field>
     </record>
 </odoo>
