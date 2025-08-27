@@ -38,3 +38,24 @@ class Employee(models.Model):
                 rec.experience_text = f"{diff.years} Years, {diff.months} Months, {diff.days} Days with us !!!"
             else:
                 rec.experience_text = "Select joining date"
+
+# Multiple choice / option for Location and Client...
+
+main_choice = fields.Selection([
+        ('button1', 'Button 1'),
+        ('button2', 'Button 2'),
+    ], string="Main Choice")
+
+    dependent_choice = fields.Selection([], string="Dependent Choice")
+
+    @api.onchange('main_choice')
+    def _onchange_main_choice(self):
+        if self.main_choice == 'button1':
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': [('value', 'in', ['abc1', 'abc2', 'abc3'])]}}
+        elif self.main_choice == 'button2':
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': [('value', 'in', ['xyz1', 'xyz2', 'xyz3'])]}}
+        else:
+            self.dependent_choice = False
+            return {'domain': {'dependent_choice': []}}
