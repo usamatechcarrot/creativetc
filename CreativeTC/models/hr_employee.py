@@ -1,53 +1,63 @@
 from odoo import models, fields, api
-from datetime import date, timedelta
+from datetime import datetime, date, timedelta, time
+
 
 class EmployeeAttendanceLine(models.Model):
-    _name = 'employee.attendance.line'
-    _description = 'Daily Attendance Line'
-    _order = 'date desc'
+    _name = "employee.attendance.line"
+    _description = "Daily Attendance Line"
+    _order = "date desc"
 
-    employee_id = fields.Many2one('hr.employee', string="Employee", ondelete="cascade")
+    employee_id = fields.Many2one(
+        "hr.employee", string="Employee", ondelete="cascade"
+    )
     date = fields.Date(string="Date")
     check_in = fields.Datetime(string="Check In")
     check_out = fields.Datetime(string="Check Out")
-    status = fields.Selection([
-        ('present', 'Present'),
-        ('absent', 'Absent'),
-    ], string="Status", default="absent")
-
-class HREmployee(models.Model):
-    _inherit = 'hr.employee'
-
-    attendance_line_ids = fields.One2many(
-        'employee.attendance.line',
-        'employee_id',
-        string="Attendance Lines"
+    status = fields.Selection(
+        [
+            ("present", "Present"),
+            ("absent", "Absent"),
+        ],
+        string="Status",
+        default="absent",
     )
 
-    @api.model
-    def generate_attendance_lines(self):
-        """Sync attendance data into our custom model."""
-        employees = self.search([])
+
+class HrEmployee(models.Model):
+    _inherit = "hr.employee"
+
+    attendance_line_ids = fields.One2many(
+        "employee.attendance.line",
+        "employee_id",
+        string="Attendance Lines",
+    )
+
+    def generate_attendance_lines(self, days=7):
+        """Fill last X days of attendance for this employee."""
+        Attendance = self.env["hr.attendance"]
         today = date.today()
 
-        for emp in employees:
-            # Avoid duplicates
-            if not self.env['employee.attendance.line'].search([
-                ('employee_id', '=', emp.id),
-                ('date', '=', today)
-            ]):
-                # Find attendance in hr.attendance
-                att = self.env['hr.attendance'].search([
-                    ('employee_id', '=', emp.id),
-                    ('check_in', '>=', today),
-                    ('check_in', '<', today + timedelta(days=1))
+        for emp in self:
+            for i in range(days):
+                day = today - timedelta(days=i)
+                # Skip if line already exists
+                if self.env["employee.attendance.line"].search([
+                    ("employee_id", "=", emp.id),
+                    ("date", "=", day)
+                ]):
+                    continue
+
+                att = Attendance.search([
+                    ("employee_id", "=", emp.id),
+                    ("check_in", ">=", datetime.combine(day, time.min)),
+                    ("check_in", "<=", datetime.combine(day, time.max))
                 ], limit=1)
 
                 vals = {
-                    'employee_id': emp.id,
-                    'date': today,
-                    'status': 'present' if att else 'absent',
-                    'check_in': att.check_in if att else False,
-                    'check_out': att.check_out if att else False,
+                    "employee_id": emp.id,
+                    "date": day,
+                    "check_in": att.check_in if att else False,
+                    "check_out": att.check_out if att else False,
+                    "status": "present" if att else "absent",
                 }
-                self.env['employee.attendance.line'].create(vals)
+                self.env["employee.attendance.line"].create(vals)
