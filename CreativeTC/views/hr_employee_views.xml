@@ -11,7 +11,7 @@
                             <!-- <field name="date"/> -->
                             <field name="last_check_in"/>
                             <field name="last_check_out"/>
-                            <field name="status"/>
+                            <!-- <field name="status"/> -->
                         </tree>
                     </field>
                 </page>
