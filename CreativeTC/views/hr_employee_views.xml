@@ -7,7 +7,7 @@
             <notebook position="inside">
                 <page string="Daily Attendance">
                     <field name="attendance_line_ids" nolabel="1">
-                        <tree editable="false" create="0" delete="0">
+                        <tree editable="false">
                             <field name="date"/>
                             <field name="check_in"/>
                             <field name="check_out"/>
