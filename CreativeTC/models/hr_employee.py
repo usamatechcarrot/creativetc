@@ -18,8 +18,7 @@ class Employee(models.Model):
     #     store=True  # set to False if you want it to always compute on the fly
     # )
 
-    experience_text = fields.Char(
-        string="Experience",
+    experience_text = fields.Char(string="Experience",
         compute="_compute_experience_text",
         store=True
     )
