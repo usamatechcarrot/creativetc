@@ -1,5 +1,6 @@
 
 from datetime import date
+from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 
 class Employee(models.Model):
@@ -10,17 +11,32 @@ class Employee(models.Model):
  # You can type the employee's joining date here
     joining_date = fields.Date(string="Joining Date")
 
-      # Auto-computed in years from joining_date to today
-    experience_years = fields.Integer(
-        string="Experience (Years)",
-        compute="_compute_experience_years",
-        store=True  # set to False if you want it to always compute on the fly
+    #   # Auto-computed in years from joining_date to today
+    # experience_years = fields.Integer(
+    #     string="Experience (Years)",
+    #     compute="_compute_experience_years",
+    #     store=True  # set to False if you want it to always compute on the fly
+    # )
+
+    experience_text = fields.Char(
+        string="Experience",
+        compute="_compute_experience_text",
+        store=True
     )
 
+    # @api.depends('joining_date')
+    # def _compute_experience_years(self):
+    #     for rec in self:
+    #         if rec.joining_date:
+    #             rec.experience_years = (date.today() - rec.joining_date).days // 365
+    #         else:
+    #             rec.experience_years = 0
+
     @api.depends('joining_date')
-    def _compute_experience_years(self):
+    def _compute_experience_text(self):
         for rec in self:
             if rec.joining_date:
-                rec.experience_years = (date.today() - rec.joining_date).days // 365
+                diff = relativedelta(date.today(), rec.joining_date)
+                rec.experience_text = f"{diff.years} years, {diff.months} months, {diff.days} days"
             else:
-                rec.experience_years = 0
+                rec.experience_text = "No joining date"
