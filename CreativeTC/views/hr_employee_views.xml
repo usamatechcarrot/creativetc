@@ -1,13 +1,13 @@
 <odoo>
-    <record id="view_employee_form_inherit_attendance_tab" model="ir.ui.view">
-        <field name="name">hr.employee.form.attendance.tab</field>
+    <record id="view_employee_form_inherit_daily_attendance" model="ir.ui.view">
+        <field name="name">hr.employee.form.daily.attendance</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Daily Attendance">
-                    <field name="attendance_line_ids" nolabel="1" widget="one2many_list">
-                        <tree editable="false">
+                    <field name="attendance_line_ids" nolabel="1">
+                        <tree editable="false" create="0" delete="0">
                             <field name="date"/>
                             <field name="check_in"/>
                             <field name="check_out"/>
