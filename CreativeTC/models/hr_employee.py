@@ -23,7 +23,6 @@ class Employee(models.Model):
         compute="_compute_experience_text",
         store=True
     )
-
     # @api.depends('joining_date')
     # def _compute_experience_years(self):
     #     for rec in self:
@@ -37,6 +36,6 @@ class Employee(models.Model):
         for rec in self:
             if rec.joining_date:
                 diff = relativedelta(date.today(), rec.joining_date)
-                rec.experience_text = f"{diff.years} years, {diff.months} months, {diff.days} days"
+                rec.experience_text = f"{diff.years} Years, {diff.months} Months, {diff.days} Days with us !!!"
             else:
-                rec.experience_text = "No joining date"
+                rec.experience_text = "Select joining date"
