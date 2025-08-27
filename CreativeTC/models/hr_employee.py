@@ -42,23 +42,21 @@ class Employee(models.Model):
 # Multiple choice / option for Location and Client...
 
     main_choice = fields.Selection([
-        ('button1', 'Button 1'),
-        ('button2', 'Button 2'),
-    ], string="Main Choice")
+        ('button1', 'Button 1 - India'),
+        ('button2', 'Button 2 - UAE'),
+    ], string="Location:")
 
-    dependent_choice = fields.Selection([('abc1', 'ABC Option 1'),
-        ('abc2', 'ABC Option 2'),
-        ('xyz1', 'XYZ Option 1'),
-        ('xyz2', 'XYZ Option 2'),], string="Dependent Choice")
+    dependent_choice = fields.Selection([], string="Client: ")
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
         if self.main_choice == 'button1':
             self.dependent_choice = False
-            return {'domain': {'dependent_choice': [('value', 'in', ['abc1', 'abc2', 'abc3'])]}}
+            return {'domain': {'dependent_choice': [('value', 'in', ['Hydrabad', 'Chennai', 'Noida'])]}}
+        
         elif self.main_choice == 'button2':
             self.dependent_choice = False
-            return {'domain': {'dependent_choice': [('value', 'in', ['xyz1', 'xyz2', 'xyz3'])]}}
+            return {'domain': {'dependent_choice': [('value', 'in', ['Dubai-AFG', 'Dubai-DHA', 'AbuDhabi-Etihad'])]}}
         else:
             self.dependent_choice = False
             return {'domain': {'dependent_choice': []}}
