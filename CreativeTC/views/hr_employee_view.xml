@@ -22,7 +22,7 @@
                 </group>
             </xpath>
 
-            Place after Job Title
+            <!-- Place after Job Title -->
             <xpath expr="//field[@name='job_title']" position="after">
                 <group string="Dependent Fields Example">
                     <field name="main_choice"/>
