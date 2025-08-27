@@ -1,20 +1,18 @@
 from odoo import models, fields
 
-class HREmployee(models.Model):
+class Employee(models.Model):
     _inherit = 'hr.employee'
-  
 
-    attendance_ids = fields.One2many(
-        'hr.attendance',
-        'employee_id',
-        string="Attendance Records"
-    )
+    # The computed field to fetch attendance records
+    attendance_count = fields.Integer(string='Attendance Records', compute='_compute_attendance_count')
+    attendance_history_ids = fields.Many2many('hr.attendance', string='Attendance History', compute='_compute_attendance_history')
 
-#class HRAttendance(models.Model):
-#    _name = 'hr.attendance'
-#
-#    name = fields.Char(string='Name')
-#    employee_id = fields.Many2one(
-#        'hr.employee',
-#        string='Employee'
-#    )
+    def _compute_attendance_count(self):
+        # Count attendance records for each employee
+        for employee in self:
+            employee.attendance_count = self.env['hr.attendance'].search_count([('employee_id', '=', employee.id)])
+
+    def _compute_attendance_history(self):
+        # Fetch the actual attendance records
+        for employee in self:
+            employee.attendance_history_ids = self.env['hr.attendance'].search([('employee_id', '=', employee.id)])
