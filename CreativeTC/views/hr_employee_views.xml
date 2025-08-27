@@ -6,13 +6,21 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Daily Attendance">
-                    <field name="attendance_line_ids" nolabel="1">
-                        <tree editable="false">
-                            <!-- <field name="date"/> -->
-                            <field name="last_check_in"/>
-                            <field name="last_check_out"/>
-                            <!-- <field name="status"/> -->
+                    <field name="attendance_line_ids" nolabel="1" mode="tree,form">
+                        <tree string="Daily Attendance">
+                            <field name="date"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="status"/>
                         </tree>
+                        <form string="Daily Attendance">
+                            <group>
+                                <field name="date"/>
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                                <field name="status"/>
+                            </group>
+                        </form>
                     </field>
                 </page>
             </notebook>
