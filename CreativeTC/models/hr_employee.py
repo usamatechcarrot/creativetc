@@ -3,6 +3,17 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 
+class ClientOption(models.Model):
+    _name = 'client.option'
+    _description = "Client Option"
+
+    name = fields.Char("Client Name")
+    location = fields.Selection([
+        ('button1', 'India'),
+        ('button2', 'UAE'),
+    ], string="Location")
+
+
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
@@ -42,16 +53,19 @@ class Employee(models.Model):
 # Multiple choice / option for Location and Client...
 
 
-
     main_choice = fields.Selection([
         ('button1', 'Button 1 - India'),
         ('button2', 'Button 2 - UAE'),
     ], string="Location:")
 
-    dependent_choice = fields.Selection(
-        selection=[],
-        string="Client:"
+    dependent_choice = fields.Many2one(
+        'client.option',
+        string="Client"
     )
+    # dependent_choice = fields.Selection(
+    #     selection=[],
+    #     string="Client:"
+    # )
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
