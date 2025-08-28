@@ -2,15 +2,31 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 
+
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
+    # Custom Fields
     test_field = fields.Char(string="This is a test field")
     joining_date = fields.Date(string="Joining Date")
     experience_text = fields.Char(string="Experience", compute="_compute_experience_text", store=True)
 
+    region = fields.Selection([
+        ('india', 'India'),
+        ('uae', 'UAE'),
+    ], string="Region")
+
+    client_choice = fields.Selection(
+        selection=[],
+        string="Client",
+    )
+
+    client_visible = fields.Boolean(default=False)
+
+    # --- Compute Methods ---
     @api.depends('joining_date')
     def _compute_experience_text(self):
+        """Compute difference between today and joining_date."""
         for rec in self:
             if rec.joining_date:
                 diff = relativedelta(date.today(), rec.joining_date)
@@ -18,53 +34,46 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-    # Will hold whether user clicked India or UAE
-    region = fields.Selection([
-        ('india', 'India'),
-        ('uae', 'UAE'),
-    ], string="Region")
-
-    # Dropdown that will be shown only after clicking button
-    client_choice = fields.Selection(selection=[], string="Client")
-
-    # Control dropdown visibility
-    client_visible = fields.Boolean(default=False)
-
-    # India button
+    # --- Button Actions ---
     def action_india(self):
-        for rec in self:
-            rec.region = 'india'
-            rec.client_visible = True
-            rec._fields['client_choice'].selection = [
-                ('noida', 'Noida'),
-                ('chennai', 'Chennai'),
-                ('hyderabad', 'Hyderabad'),
-            ]
-            return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': "Button Clicked",
-                'message': "India selected! Choose your client below.",
-                'sticky': False,
-            }}
+        """Triggered when India button clicked."""
+        self.write({
+            'region': 'india',
+            'client_visible': True,
+        })
+        self._set_client_options([
+            ('noida', 'Noida'),
+            ('chennai', 'Chennai'),
+            ('hyderabad', 'Hyderabad'),
+        ])
+        return self._notify("You clicked India button!")
 
-    # UAE button
     def action_uae(self):
-        for rec in self:
-            rec.region = 'uae'
-            rec.client_visible = True
-            rec._fields['client_choice'].selection = [
-                ('dubai_dha', 'Dubai-DHA'),
-                ('dubai_afg', 'Dubai-AFG'),
-                ('abudhabi', 'Abu Dhabi'),
-            ]
+        """Triggered when UAE button clicked."""
+        self.write({
+            'region': 'uae',
+            'client_visible': True,
+        })
+        self._set_client_options([
+            ('dubai_dha', 'Dubai-DHA'),
+            ('dubai_afg', 'Dubai-AFG'),
+            ('abudhabi', 'Abu Dhabi'),
+        ])
+        return self._notify("You clicked UAE button!")
+
+    # --- Helpers ---
+    def _set_client_options(self, options):
+        """Update client_choice selection dynamically."""
+        self._fields['client_choice'].selection = options
+
+    def _notify(self, message):
+        """Return frontend notification."""
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': "Button Clicked",
-                'message': "UAE selected! Choose your client below.",
+                'message': message,
                 'sticky': False,
             }
         }
