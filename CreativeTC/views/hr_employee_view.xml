@@ -20,6 +20,7 @@
                 <!-- Buttons for Region -->
                 <group string="Select Region" class="o_horizontal_field_group">
                     <button name="action_india" type="object" string="India" class="btn-primary" style="margin-right:10px;"/>
+                    <button name="action_hello" type="object" string="USA" class="btn-success">
                     <button name="action_uae" type="object" string="UAE" class="btn-success"/>
                 </group>
 
