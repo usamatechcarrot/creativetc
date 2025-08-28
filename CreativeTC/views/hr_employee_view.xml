@@ -29,6 +29,23 @@
                     <field name="dependent_client"/>
                 </group>
             </xpath>
+
+            <!-- Add buttons after Job Title -->
+            <xpath expr="//field[@name='job_title']" position="after">
+                <group string="Select Location" class="o_horizontal_field_group">
+                    <button name="action_india"
+                            type="object"
+                            string="India"
+                            class="btn-primary"
+                            style="margin-right:10px;"/>
+
+                    <button name="action_uae"
+                            type="object"
+                            string="UAE"
+                            class="btn-success"/>
+                </group>
+            </xpath>
+            
         </field>
     </record>
 </odoo>

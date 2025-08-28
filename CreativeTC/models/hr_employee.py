@@ -56,3 +56,27 @@ class Employee(models.Model):
                 'domain': {'dependent_client': []},
                 'value': {'dependent_client': False}
             }
+
+    @api.model
+    def action_india(self):
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Button Clicked",
+                'message': "You clicked INDIA button 🚩",
+                'sticky': False,
+            }
+        }
+
+    @api.model
+    def action_uae(self):
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Button Clicked",
+                'message': "You clicked UAE button 🇦🇪",
+                'sticky': False,
+            }
+        }
