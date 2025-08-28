@@ -31,9 +31,8 @@
                         attrs="{'invisible': [('client_visible','=',False)]}" 
                         options="{'no_create': True}"/>
                 </group>
-                    <field name="client_choice" options="{'no_create': True}"/>
-                </group>
             </xpath>
+
         </field>
     </record>
 </odoo>
