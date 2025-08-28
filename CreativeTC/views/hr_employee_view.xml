@@ -6,21 +6,21 @@
         <field name="arch" type="xml">
 
             <!-- Find the <field name="name"/> in Employee form and put our field after it -->
-            <!-- <xpath expr="//field[@name='job_title']" position="after">
+            <xpath expr="//field[@name='job_title']" position="after">
             <field name="test_field" placeholder="Test:- Enter your preferred location here..."/>
-            </xpath> -->
+            </xpath>
 
-            <!-- Put both fields just below Job Position
-            <xpath expr="//field[@name='job_title']" position="after"> -->
+            Put both fields just below Job Position
+            <xpath expr="//field[@name='job_title']" position="after">
                  <!-- Horizontal group -->
-                <!-- <group string="Employment Info" class="o_horizontal_field_group">
+                <group string="Employment Info" class="o_horizontal_field_group">
                     <group inline="True">
                         <field name="test_field" placeholder="Test:- Free Text..." />
                         <field name="joining_date" placeholder="Select joining date" />
                         <field name="experience_text" readonly="1"/>
                     </group>
                 </group>
-            </xpath> -->
+            </xpath>
 
             <!-- Place after Job Title -->
             <xpath expr="//field[@name='job_title']" position="after">
