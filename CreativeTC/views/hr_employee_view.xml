@@ -5,14 +5,8 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
-            <!-- Find the <field name="name"/> in Employee form and put our field after it -->
+            <!-- Employment Info -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <field name="test_field" placeholder="Test:- Enter your preferred location here..."/>
-            </xpath>
-
-            <!-- Put both fields just below Job Position -->
-            <xpath expr="//field[@name='job_title']" position="after">
-                <!-- Horizontal group -->
                 <group string="Employment Info" class="o_horizontal_field_group">
                     <group inline="True">
                         <field name="test_field" placeholder="Test:- Free Text..." />
@@ -22,49 +16,21 @@
                 </group>
             </xpath>
 
-            <!-- Dependent fields after Job Title -->
+            <!-- Buttons for Region -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <group string="Dependent Fields Example">
-                    <field name="main_choice"/>
-                    <field name="dependent_client"/>
+                <group string="Select Region" class="o_horizontal_field_group">
+                    <button name="action_india" type="object" string="India" class="btn-primary" style="margin-right:10px;"/>
+                    <button name="action_uae" type="object" string="UAE" class="btn-success"/>
                 </group>
             </xpath>
 
-            <!-- Add buttons after Job Title -->
+            <!-- Client Dropdown appears after button click -->
             <xpath expr="//field[@name='job_title']" position="after">
-                <group string="Select Location" class="o_horizontal_field_group">
-                    <button name="action_india"
-                            type="object"
-                            string="India"
-                            class="btn-primary"
-                            style="margin-right:10px;"/>
-
-                    <button name="action_uae"
-                            type="object"
-                            string="UAE"
-                            class="btn-success"/>
+                <group string="Client Selection" invisible="1">
+                    <field name="client_choice" options="{'no_create': True}"/>
                 </group>
             </xpath>
 
-                        <xpath expr="//field[@name='job_title']" position="after">
-                    <group string="Region &amp; Clients">
-                    <group>
-                        <!-- Buttons -->
-                        <button name="action_india"
-                                string="India"
-                                type="object"
-                                class="btn-primary"/>
-                        <button name="action_uae"
-                                string="UAE"
-                                type="object"
-                                class="btn-secondary"/>
-                    </group>
-                    
-                    <!-- Dropdown shown only after button click -->
-                    <field name="client_choice" attrs="{'invisible': [('region','=',False)]}"/>
-                </group>
-            </xpath>
-            
         </field>
     </record>
 </odoo>

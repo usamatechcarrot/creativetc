@@ -6,14 +6,8 @@ class Employee(models.Model):
     _inherit = 'hr.employee'
 
     test_field = fields.Char(string="This is a test field")
-
     joining_date = fields.Date(string="Joining Date")
-
-    experience_text = fields.Char(
-        string="Experience",
-        compute="_compute_experience_text",
-        store=True
-    )
+    experience_text = fields.Char(string="Experience", compute="_compute_experience_text", store=True)
 
     @api.depends('joining_date')
     def _compute_experience_text(self):
@@ -24,65 +18,6 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-    main_choice = fields.Selection([
-        ('button1', 'Button 1 - India'),
-        ('button2', 'Button 2 - UAE'),
-    ], string="Location:")
-
-    dependent_client = fields.Selection([], string="Client:")
-
-    # @api.onchange('main_choice')
-    # def _onchange_main_choice(self):
-    #     if self.main_choice == 'button1':
-    #         return {
-    #             'domain': {
-    #                 'dependent_client': [
-    #                     ('selection_key', 'in', ['hydrabad', 'chennai', 'noida'])
-    #                 ]
-    #             },
-    #             'value': {'dependent_client': False}
-    #         }
-    #     elif self.main_choice == 'button2':
-    #         return {
-    #             'domain': {
-    #                 'dependent_client': [
-    #                     ('selection_key', 'in', ['dubai_afg', 'dubai_dha', 'abudhabi'])
-    #                 ]
-    #             },
-    #             'value': {'dependent_client': False}
-    #         }
-    #     else:
-    #         return {
-    #             'domain': {'dependent_client': []},
-    #             'value': {'dependent_client': False}
-    #         }
-
-    # @api.model
-    def action_india(self, *args, **kwargs):
-        for rec in self:
-            return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': "Button Clicked",
-                'message': f"{rec.name}: You clicked INDIA button 🚩",
-                'sticky': False,
-            }
-        }
-
-    # @api.model
-    def action_uae(self, *args, **kwargs):
-        for rec in self:
-            return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': "Button Clicked",
-                'message': f"{rec.name}: You clicked UAE button 🇦🇪",
-                'sticky': False,
-            }
-        }
-
     # Will hold whether user clicked India or UAE
     region = fields.Selection([
         ('india', 'India'),
@@ -90,12 +25,10 @@ class Employee(models.Model):
     ], string="Region")
 
     # Dropdown that will be shown only after clicking button
-    client_choice = fields.Selection(
-        selection=[],
-        string="Client"
-    )
-    
-    def action_india(self, *args, **kwargs):
+    client_choice = fields.Selection(selection=[], string="Client")
+
+    # India button
+    def action_india(self):
         for rec in self:
             rec.region = 'india'
             rec._fields['client_choice'].selection = [
@@ -103,9 +36,10 @@ class Employee(models.Model):
                 ('chennai', 'Chennai'),
                 ('hyderabad', 'Hyderabad'),
             ]
-        return {}
+        return True
 
-    def action_uae(self, *args, **kwargs):
+    # UAE button
+    def action_uae(self):
         for rec in self:
             rec.region = 'uae'
             rec._fields['client_choice'].selection = [
@@ -113,4 +47,4 @@ class Employee(models.Model):
                 ('dubai_afg', 'Dubai-AFG'),
                 ('abudhabi', 'Abu Dhabi'),
             ]
-        return {}
+        return True
