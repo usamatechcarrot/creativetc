@@ -5,8 +5,10 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
-            <!-- Employment Info -->
+            <!-- All custom fields inserted together -->
             <xpath expr="//field[@name='job_title']" position="after">
+                
+                <!-- Employment Info -->
                 <group string="Employment Info" class="o_horizontal_field_group">
                     <group inline="True">
                         <field name="test_field" placeholder="Test:- Free Text..." />
@@ -14,23 +16,20 @@
                         <field name="experience_text" readonly="1"/>
                     </group>
                 </group>
-            </xpath>
 
-            <!-- Buttons for Region -->
-            <xpath expr="//field[@name='job_title']" position="after">
+                <!-- Buttons for Region -->
                 <group string="Select Region" class="o_horizontal_field_group">
                     <button name="action_india" type="object" string="India" class="btn-primary" style="margin-right:10px;"/>
                     <button name="action_uae" type="object" string="UAE" class="btn-success"/>
                 </group>
-            </xpath>
 
-            <!-- Client Dropdown appears after button click -->
-            <xpath expr="//field[@name='job_title']" position="after">
+                <!-- Client Dropdown (after buttons) -->
                 <group string="Client Selection">
                     <field name="client_choice"
-                        invisible="not client_visible"
-                        options="{'no_create': True}"/>
+                           invisible="not client_visible"
+                           options="{'no_create': True}"/>
                 </group>
+
             </xpath>
         </field>
     </record>
