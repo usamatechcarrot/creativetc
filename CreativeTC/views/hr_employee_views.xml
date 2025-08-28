@@ -4,6 +4,8 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
+            <field name="check_in" invisible="1"/>
+            <field name="check_out"invisible="1"/>
             <xpath expr="//notebook" position="inside">
                 <page string="Attendance">
                     <field name="attendance_ids" widget="section_and_content">
