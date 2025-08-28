@@ -25,7 +25,7 @@ class Employee(models.Model):
     ], string="Region")
 
     # Dropdown that will be shown only after clicking button
-    client_choice = fields.Selection(selection=[], string="Client")
+    client_choice = fields.Selection(selection=['a','b'], string="Client")
 
     # India button
     def action_india(self):
