@@ -26,12 +26,10 @@
                 <!-- Client Dropdown (after buttons) -->
                 <group string="Client Selection">
                     <field name="client_choice"
-                           invisible="not client_visible"
-                           attrs="{'invisible': [('client_visible', '=', False)]}"
-                           options="{'no_create': True}"
-                           placeholder="Select city here..."/>
+                        options="{'no_create': True}"
+                        placeholder="Select city here..."
+                        modifiers="{'invisible': [('client_visible', '=', False)]}"/>
                 </group>
-
             </xpath>
         </field>
     </record>
