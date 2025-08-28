@@ -47,7 +47,7 @@
             </xpath>
 
                         <xpath expr="//field[@name='job_title']" position="after">
-                <group string="Region & Clients">
+                    <group string="Region &amp; Clients">
                     <group>
                         <!-- Buttons -->
                         <button name="action_india"
