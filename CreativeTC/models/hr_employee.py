@@ -31,31 +31,31 @@ class Employee(models.Model):
 
     dependent_client = fields.Selection([], string="Client:")
 
-    @api.onchange('main_choice')
-    def _onchange_main_choice(self):
-        if self.main_choice == 'button1':
-            return {
-                'domain': {
-                    'dependent_client': [
-                        ('selection_key', 'in', ['hydrabad', 'chennai', 'noida'])
-                    ]
-                },
-                'value': {'dependent_client': False}
-            }
-        elif self.main_choice == 'button2':
-            return {
-                'domain': {
-                    'dependent_client': [
-                        ('selection_key', 'in', ['dubai_afg', 'dubai_dha', 'abudhabi'])
-                    ]
-                },
-                'value': {'dependent_client': False}
-            }
-        else:
-            return {
-                'domain': {'dependent_client': []},
-                'value': {'dependent_client': False}
-            }
+    # @api.onchange('main_choice')
+    # def _onchange_main_choice(self):
+    #     if self.main_choice == 'button1':
+    #         return {
+    #             'domain': {
+    #                 'dependent_client': [
+    #                     ('selection_key', 'in', ['hydrabad', 'chennai', 'noida'])
+    #                 ]
+    #             },
+    #             'value': {'dependent_client': False}
+    #         }
+    #     elif self.main_choice == 'button2':
+    #         return {
+    #             'domain': {
+    #                 'dependent_client': [
+    #                     ('selection_key', 'in', ['dubai_afg', 'dubai_dha', 'abudhabi'])
+    #                 ]
+    #             },
+    #             'value': {'dependent_client': False}
+    #         }
+    #     else:
+    #         return {
+    #             'domain': {'dependent_client': []},
+    #             'value': {'dependent_client': False}
+    #         }
 
     # @api.model
     def action_india(self, *args, **kwargs):
@@ -82,3 +82,35 @@ class Employee(models.Model):
                 'sticky': False,
             }
         }
+
+    # Will hold whether user clicked India or UAE
+    region = fields.Selection([
+        ('india', 'India'),
+        ('uae', 'UAE'),
+    ], string="Region")
+
+    # Dropdown that will be shown only after clicking button
+    client_choice = fields.Selection(
+        selection=[],
+        string="Client"
+    )
+    
+    def action_india(self, *args, **kwargs):
+        for rec in self:
+            rec.region = 'india'
+            rec._fields['client_choice'].selection = [
+                ('noida', 'Noida'),
+                ('chennai', 'Chennai'),
+                ('hyderabad', 'Hyderabad'),
+            ]
+        return {}
+
+    def action_uae(self, *args, **kwargs):
+        for rec in self:
+            rec.region = 'uae'
+            rec._fields['client_choice'].selection = [
+                ('dubai_dha', 'Dubai-DHA'),
+                ('dubai_afg', 'Dubai-AFG'),
+                ('abudhabi', 'Abu Dhabi'),
+            ]
+        return {}

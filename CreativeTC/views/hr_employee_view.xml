@@ -45,6 +45,25 @@
                             class="btn-success"/>
                 </group>
             </xpath>
+
+                        <xpath expr="//field[@name='job_title']" position="after">
+                <group string="Region & Clients">
+                    <group>
+                        <!-- Buttons -->
+                        <button name="action_india"
+                                string="India"
+                                type="object"
+                                class="btn-primary"/>
+                        <button name="action_uae"
+                                string="UAE"
+                                type="object"
+                                class="btn-secondary"/>
+                    </group>
+                    
+                    <!-- Dropdown shown only after button click -->
+                    <field name="client_choice" attrs="{'invisible': [('region','=',False)]}"/>
+                </group>
+            </xpath>
             
         </field>
     </record>
