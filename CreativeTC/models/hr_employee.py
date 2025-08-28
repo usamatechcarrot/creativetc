@@ -14,7 +14,6 @@ class Employee(models.Model):
     region = fields.Selection([
         ('india', 'India'),
         ('uae', 'UAE'),
-        ('hello', 'USA'),
     ], string="Region")
 
     client_choice = fields.Selection(
