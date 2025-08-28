@@ -25,26 +25,46 @@ class Employee(models.Model):
     ], string="Region")
 
     # Dropdown that will be shown only after clicking button
-    client_choice = fields.Selection(selection=['a','b'], string="Client")
+    client_choice = fields.Selection(selection=[], string="Client")
+
+    # Control dropdown visibility
+    client_visible = fields.Boolean(default=False)
 
     # India button
     def action_india(self):
         for rec in self:
             rec.region = 'india'
+            rec.client_visible = True
             rec._fields['client_choice'].selection = [
                 ('noida', 'Noida'),
                 ('chennai', 'Chennai'),
                 ('hyderabad', 'Hyderabad'),
             ]
-        return True
+            return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Button Clicked",
+                'message': "India selected! Choose your client below.",
+                'sticky': False,
+            }}
 
     # UAE button
     def action_uae(self):
         for rec in self:
             rec.region = 'uae'
+            rec.client_visible = True
             rec._fields['client_choice'].selection = [
                 ('dubai_dha', 'Dubai-DHA'),
                 ('dubai_afg', 'Dubai-AFG'),
                 ('abudhabi', 'Abu Dhabi'),
             ]
-        return True
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Button Clicked",
+                'message': "UAE selected! Choose your client below.",
+                'sticky': False,
+            }
+        }
