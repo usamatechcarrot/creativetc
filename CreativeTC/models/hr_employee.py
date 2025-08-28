@@ -52,7 +52,7 @@ class Employee(models.Model):
         """Triggered when UAE button clicked."""
         self.write({
             'region': 'uae',
-            'client_visible': True,
+            'client_visible': False,
         })
         self._set_client_options([
             ('dubai_dha', 'Dubai-DHA'),
