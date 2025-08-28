@@ -27,12 +27,11 @@
             <!-- Client Dropdown appears after button click -->
             <xpath expr="//field[@name='job_title']" position="after">
                 <group string="Client Selection">
-                    <field name="client_choice" 
-                        attrs="{'invisible': [('client_visible','=',False)]}" 
+                    <field name="client_choice"
+                        invisible="not client_visible"
                         options="{'no_create': True}"/>
                 </group>
             </xpath>
-
         </field>
     </record>
 </odoo>
