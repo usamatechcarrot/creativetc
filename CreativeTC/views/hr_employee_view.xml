@@ -6,9 +6,9 @@
         <field name="arch" type="xml">
 
             <!-- Find the <field name="name"/> in Employee form and put our field after it -->
-            <xpath expr="//field[@name='job_title']" position="after">
+            <!-- <xpath expr="//field[@name='job_title']" position="after">
             <field name="test_field" placeholder="Test:- Enter your preferred location here..."/>
-            </xpath>
+            </xpath> -->
 
             <!-- Put both fields just below Job Position
             <xpath expr="//field[@name='job_title']" position="after"> -->
