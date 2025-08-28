@@ -57,8 +57,8 @@ class Employee(models.Model):
                 'value': {'dependent_client': False}
             }
 
-    @api.model
-    def action_india(self):
+    # @api.model
+    def action_india(self, *args, **kwargs):
         for rec in self:
             return {
             'type': 'ir.actions.client',
@@ -70,8 +70,8 @@ class Employee(models.Model):
             }
         }
 
-    @api.model
-    def action_uae(self):
+    # @api.model
+    def action_uae(self, *args, **kwargs):
         for rec in self:
             return {
             'type': 'ir.actions.client',
