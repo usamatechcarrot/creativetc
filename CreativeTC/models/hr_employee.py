@@ -48,7 +48,7 @@ class Employee(models.Model):
         ('button2', 'Button 2 - UAE'),
     ], string="Location:")
 
-    dependent_choice = fields.Selection(
+    dependent_client = fields.Selection(
         # selection=[],
         selection=lambda self: self._get_dependent_choices(),
         string="Client:"
@@ -85,7 +85,7 @@ class Employee(models.Model):
     #         ]
     #     else:
     #         self._fields['dependent_choice'].selection = []
-        self.dependent_choice = False
+        self.dependent_client = False
 
 
 
