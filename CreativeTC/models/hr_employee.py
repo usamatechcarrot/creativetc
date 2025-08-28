@@ -18,7 +18,8 @@ class Employee(models.Model):
     #     store=True  # set to False if you want it to always compute on the fly
     # )
 
-    experience_text = fields.Char(string="Experience",
+    experience_text = fields.Char(
+        string="Experience",
         compute="_compute_experience_text",
         store=True
     )
@@ -39,10 +40,6 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-# Multiple choice / option for Location and Client...
-
-
-
     main_choice = fields.Selection([
         ('button1', 'Button 1 - India'),
         ('button2', 'Button 2 - UAE'),
@@ -54,62 +51,26 @@ class Employee(models.Model):
         string="Client:"
     )
 
+    @api.model
     def _get_dependent_choices(self):
-        if self and self.main_choice == 'button1':
+        """Called automatically to provide selection options"""
+        if self.env.context.get('main_choice') == 'button1':
             return [
-            ('hydrabad', 'Hyderabad'),
-            ('chennai', 'Chennai'),
-            ('noida', 'Noida'),
-        ]
-        elif self and self.main_choice == 'button2':
+                ('hydrabad', 'Hyderabad'),
+                ('chennai', 'Chennai'),
+                ('noida', 'Noida'),
+            ]
+        elif self.env.context.get('main_choice') == 'button2':
             return [
-            ('dubai_afg', 'Dubai-AFG'),
-            ('dubai_dha', 'Dubai-DHA'),
-            ('abudhabi', 'Abu Dhabi-Etihad'),
-        ]
+                ('dubai_afg', 'Dubai-AFG'),
+                ('dubai_dha', 'Dubai-DHA'),
+                ('abudhabi', 'Abu Dhabi-Etihad'),
+            ]
         return []
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
-    #     if self.main_choice == 'button1':
-    #         self._fields['dependent_choice'].selection = [
-    #             ('hydrabad', 'Hyderabad'),
-    #             ('chennai', 'Chennai'),
-    #             ('noida', 'Noida'),
-    #         ]
-    #     elif self.main_choice == 'button2':
-    #         self._fields['dependent_choice'].selection = [
-    #             ('dubai_afg', 'Dubai-AFG'),
-    #             ('dubai_dha', 'Dubai-DHA'),
-    #             ('abudhabi', 'Abu Dhabi-Etihad'),
-    #         ]
-    #     else:
-    #         self._fields['dependent_choice'].selection = []
-        self.dependent_client = False
-
-
-
-    # main_choice = fields.Selection([
-    #     ('button1', 'Button 1 - India'),
-    #     ('button2', 'Button 2 - UAE'),
-    # ], string="Location:")
-
-    # dependent_choice = fields.Selection(selection=[], string="Client: ")
-
-    # @api.onchange('main_choice')
-    # def _onchange_main_choice(self):
-    #     if self.main_choice == 'button1':
-    #         self._fields['dependent_choice'].selection = [
-    #             ('hydrabad', 'Hyderabad'),
-    #             ('chennai', 'Chennai'),
-    #             ('noida', 'Noida'),
-    #         ]
-    #         # self.dependent_choice = False
-    #         # return {'domain': {'dependent_choice': [('value', 'in', ['Hydrabad', 'Chennai', 'Noida'])]}}
-        
-    #     elif self.main_choice == 'button2':
-    #         # self.dependent_choice = False
-    #         return {'domain': {'dependent_choice': [('value', 'in', ['Dubai-AFG', 'Dubai-DHA', 'AbuDhabi-Etihad'])]}}
-    #     else:
-    #         self.dependent_choice = False
-    #         return {'domain': {'dependent_choice': []}}
+        return {
+            'domain': {'dependent_choice': []},
+            'context': {'main_choice': self.main_choice}
+        }
