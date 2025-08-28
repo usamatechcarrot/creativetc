@@ -7,12 +7,12 @@
 
             <!-- Find the <field name="name"/> in Employee form and put our field after it -->
             <xpath expr="//field[@name='job_title']" position="after">
-            <field name="test_field" placeholder="Test:- Enter your preferred location here..."/>
+                <field name="test_field" placeholder="Test:- Enter your preferred location here..."/>
             </xpath>
 
-            Put both fields just below Job Position
+            <!-- Put both fields just below Job Position -->
             <xpath expr="//field[@name='job_title']" position="after">
-                 <!-- Horizontal group -->
+                <!-- Horizontal group -->
                 <group string="Employment Info" class="o_horizontal_field_group">
                     <group inline="True">
                         <field name="test_field" placeholder="Test:- Free Text..." />
@@ -22,11 +22,11 @@
                 </group>
             </xpath>
 
-            <!-- Place after Job Title -->
+            <!-- Dependent fields after Job Title -->
             <xpath expr="//field[@name='job_title']" position="after">
                 <group string="Dependent Fields Example">
                     <field name="main_choice"/>
-                    <field name="dependent_client" context="{'main_choice': main_choice}"/>
+                    <field name="dependent_client"/>
                 </group>
             </xpath>
         </field>

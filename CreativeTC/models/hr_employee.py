@@ -1,4 +1,3 @@
-
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
@@ -8,7 +7,6 @@ class Employee(models.Model):
 
     test_field = fields.Char(string="This is a test field")
 
- # You can type the employee's joining date here
     joining_date = fields.Date(string="Joining Date")
 
     experience_text = fields.Char(
@@ -31,32 +29,30 @@ class Employee(models.Model):
         ('button2', 'Button 2 - UAE'),
     ], string="Location:")
 
-    dependent_client = fields.Selection(
-        # selection=[],
-        selection=lambda self: self._get_dependent_choices(),
-        string="Client:"
-    )
-
-    @api.model
-    def _get_dependent_choices(self):
-        """Called automatically to provide selection options"""
-        if self.env.context.get('main_choice') == 'button1':
-            return [
-                ('hydrabad', 'Hyderabad'),
-                ('chennai', 'Chennai'),
-                ('noida', 'Noida'),
-            ]
-        elif self.env.context.get('main_choice') == 'button2':
-            return [
-                ('dubai_afg', 'Dubai-AFG'),
-                ('dubai_dha', 'Dubai-DHA'),
-                ('abudhabi', 'Abu Dhabi-Etihad'),
-            ]
-        return []
+    dependent_client = fields.Selection([], string="Client:")
 
     @api.onchange('main_choice')
     def _onchange_main_choice(self):
-        return {
-            'domain': {'dependent_choice': []},
-            'context': {'main_choice': self.main_choice}
-        }
+        if self.main_choice == 'button1':
+            return {
+                'domain': {
+                    'dependent_client': [
+                        ('selection_key', 'in', ['hydrabad', 'chennai', 'noida'])
+                    ]
+                },
+                'value': {'dependent_client': False}
+            }
+        elif self.main_choice == 'button2':
+            return {
+                'domain': {
+                    'dependent_client': [
+                        ('selection_key', 'in', ['dubai_afg', 'dubai_dha', 'abudhabi'])
+                    ]
+                },
+                'value': {'dependent_client': False}
+            }
+        else:
+            return {
+                'domain': {'dependent_client': []},
+                'value': {'dependent_client': False}
+            }
