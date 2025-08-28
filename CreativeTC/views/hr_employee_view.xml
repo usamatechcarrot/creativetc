@@ -34,7 +34,6 @@
                     <field name="client_choice" options="{'no_create': True}"/>
                 </group>
             </xpath>
-
         </field>
     </record>
 </odoo>
