@@ -59,24 +59,26 @@ class Employee(models.Model):
 
     @api.model
     def action_india(self):
-        return {
+        for rec in self:
+            return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': "Button Clicked",
-                'message': "You clicked INDIA button 🚩",
+                'message': f"{rec.name}: You clicked INDIA button 🚩",
                 'sticky': False,
             }
         }
 
     @api.model
     def action_uae(self):
-        return {
+        for rec in self:
+            return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': "Button Clicked",
-                'message': "You clicked UAE button 🇦🇪",
+                'message': f"{rec.name}: You clicked UAE button 🇦🇪",
                 'sticky': False,
             }
         }
