@@ -1,10 +1,10 @@
 {
     'name': 'Real Estate',
-    'version': '1.0',
+    'version': '18.0',
     'category': 'Real Estate',
     'summary': 'Manage properties, buyers, and sales',
     'description': 'A custom real estate app to manage properties, clients, and deals.',
-    'author': 'Your Name',
+    'author': 'Lalit',
     'depends': ['base'],
     'data': [
         'views/real_estate_menu.xml',
