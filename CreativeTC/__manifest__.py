@@ -11,21 +11,8 @@
         'views/todo_task_views.xml',
         'views/product_template_view.xml',
         'views/hr_employee_view.xml',
+        'views/daily_habit_tracker_view.xml',  # <-- New App
     ],
     'installable': True,
     'application': False,
-}
-
-{
-    "name": "Daily Habit Tracker",
-    "version": "1.0",
-    "summary": "Track daily habits and progress",
-    "author": "Your Name",
-    "category": "Productivity",
-    "depends": ["base"],
-    "data": [
-        "views/habit_views.xml",
-    ],
-    "installable": True,
-    "application": True,
 }
