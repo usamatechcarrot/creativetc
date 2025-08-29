@@ -5,7 +5,6 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
-            <!-- All custom fields inserted together -->
             <xpath expr="//field[@name='job_title']" position="after">
                 
                 <!-- Employment Info -->
@@ -23,15 +22,10 @@
                     <button name="action_uae" type="object" string="UAE" class="btn-success"/>
                 </group>
 
-                <!-- Client Dropdown (after buttons) -->
-                <field name="client_choice" modifiers="{'invisible': [('client_visible','=',False)]}" options="{'no_create': True}"/>
-
-                <!-- <group string="Client Selection">
-                    <field name="client_choice"
-                        options="{'no_create': True}"
-                        
-                        modifiers="{'invisible': [('client_visible', '=', False)]}"/>
-                </group> -->
+                <!-- Region Message -->
+                <field name="region_message"
+                       readonly="1"
+                       modifiers="{'invisible': [('region_visible','=',False)]}"/>
             </xpath>
         </field>
     </record>

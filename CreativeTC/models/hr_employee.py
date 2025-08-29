@@ -10,17 +10,9 @@ class Employee(models.Model):
     joining_date = fields.Date(string="Joining Date")
     experience_text = fields.Char(string="Experience", compute="_compute_experience_text", store=True)
 
-    # Region (set by buttons)
-    region = fields.Selection([
-        ('india', 'India'),
-        ('uae', 'UAE'),
-    ], string="Region")
-
-    # Client dropdown (options will change based on region)
-    client_choice = fields.Selection(selection=[], string="Client", help="Select city here")
-
-    # Control visibility of client dropdown
-    client_visible = fields.Boolean(default=False)
+    # Region message field (hidden by default, shows on button click)
+    region_message = fields.Char(string="Region Message")
+    region_visible = fields.Boolean(default=False)
 
     @api.depends('joining_date')
     def _compute_experience_text(self):
@@ -31,78 +23,12 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-    client_visible = fields.Boolean(default=False)
-
-    # client_choice = fields.Selection([
-    #     ('noida', 'Noida'),
-    #     ('chennai', 'Chennai'),
-    #     ('hyderabad', 'Hyderabad'),
-    #     ('dubai', 'Dubai'),
-    #     ('abu_dhabi', 'Abu Dhabi'),
-    #     ('sharjah', 'Sharjah'),
-    # ], string="Client")
-
-    
-
     def action_india(self):
-        self.write({'client_visible': True})
-        return{"hello India"}
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'res_model': 'hr.employee',
-        #     'res_id': self.id,
-        #     'view_mode': 'form',
-        #     'target': 'current',
-        # }
+        for rec in self:
+            rec.region_message = "Hello India"
+            rec.region_visible = True
 
     def action_uae(self):
-        self.write({'client_visible': True})
-        return{"hello UAE"}
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'res_model': 'hr.employee',
-        #     'res_id': self.id,
-        #     'view_mode': 'form',
-        #     'target': 'current',
-        # }
-
-    # # India button
-    # def action_india(self):
-    #     for rec in self:
-    #         rec.region = 'india'
-    #         rec.client_visible = True
-    #         # assign options dynamically
-    #         rec._fields['client_choice'].selection = [
-    #             ('noida', 'Noida'),
-    #             ('chennai', 'Chennai'),
-    #             ('hyderabad', 'Hyderabad'),
-    #         ]
-    #     return {
-    #         'type': 'ir.actions.client',
-    #         'tag': 'display_notification',
-    #         'params': {
-    #             'title': "Region Selected",
-    #             'message': "India selected! Choose your client below.",
-    #             'sticky': False,
-    #         }
-    #     }
-
-    # # UAE button
-    # def action_uae(self):
-    #     for rec in self:
-    #         rec.region = 'uae'
-    #         rec.client_visible = True
-    #         rec._fields['client_choice'].selection = [
-    #             ('dubai_dha', 'Dubai-DHA'),
-    #             ('dubai_afg', 'Dubai-AFG'),
-    #             ('abudhabi', 'Abu Dhabi'),
-    #         ]
-    #     return {
-    #         'type': 'ir.actions.client',
-    #         'tag': 'display_notification',
-    #         'params': {
-    #             'title': "Region Selected",
-    #             'message': "UAE selected! Choose your client below.",
-    #             'sticky': False,
-    #         }
-    #     }
+        for rec in self:
+            rec.region_message = "Hello UAE"
+            rec.region_visible = True
