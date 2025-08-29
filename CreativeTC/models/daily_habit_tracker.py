@@ -1,7 +1,7 @@
 from odoo import models, fields
 
-class HelloWorld(models.Model):
-    _name = 'creative.hello_world'
-    _description = 'Hello World Model'
+class DailyHabitTracker(models.Model):
+    _name = 'creative.daily_habit_tracker'
+    _description = 'Daily Habit Tracker'
 
-    name = fields.Char(string="Name", default="Hello World")
+    name = fields.Char(string="Habit", default="Hello Habit")
