@@ -31,7 +31,8 @@
                 <group string="Region Info" class="o_horizontal_field_group"
                        modifiers="{'invisible': [('region_visible','=',False)]}">
                     <field name="region_message" readonly="1"/>
-                    <field name="choice_option" widget="radio"/>
+                    <field name="choice_option" widget="radio"
+                    modifiers="{'invisible': [('choice_visible','=',False)]}"/>
                 </group>
 
             </xpath>
