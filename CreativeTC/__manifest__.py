@@ -14,5 +14,5 @@
         'views/daily_habit_tracker_view.xml',  # <-- New App
     ],
     'installable': True,
-    'application': False,
+    'application': True,
 }
