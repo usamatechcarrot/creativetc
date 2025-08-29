@@ -3,11 +3,10 @@
     <field name="model">hr.employee</field>
     <field name="inherit_id" ref="hr.view_employee_form"/>
     <field name="arch" type="xml">
-
         <!-- Insert our tab inside the notebook -->
         <xpath expr="//sheet/notebook" position="inside">
             <page string="Attendances">
-                <field name="attendance_ids" context="{'default_employee_id': active_id}">
+                <field name="attendance_ids" widget="one2many_list">
                     <tree editable="bottom">
                         <field name="check_in"/>
                         <field name="check_out"/>
