@@ -1,5 +1,5 @@
 {
-    'name': 'Stock Location Progress Bar',
+    'name': 'A1 Stock Location Progress Bar',
     'version': '18.0',
     'category': 'Inventory',
     'summary': 'Show progress bar of stock usage in each location',
@@ -11,8 +11,9 @@
         'views/todo_task_views.xml',
         'views/product_template_view.xml',
         'views/hr_employee_view.xml',
-        'views/daily_habit_tracker_view.xml',  # <-- New App
     ],
     'installable': True,
     'application': True,
+    'auto_install': False,
+
 }
