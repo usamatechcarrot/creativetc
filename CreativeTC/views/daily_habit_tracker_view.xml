@@ -16,7 +16,7 @@
 
     <record id="action_daily_habit" model="ir.actions.act_window">
         <field name="name">Daily Habit</field>
-        <field name="res_model">creative.daily_habit_tracker</field>
+        <field name="res_model">creativetc.daily_habit_tracker</field>
         <field name="view_mode">form,tree</field>
     </record>
 
