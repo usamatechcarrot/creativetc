@@ -7,9 +7,7 @@
         <!-- Insert our tab inside the notebook -->
         <xpath expr="//sheet/notebook" position="inside">
             <page string="Attendances">
-                <field name="attendance_ids" widget="one2many_list">
                     <field name="attendance_ids" readonly="1"/>
-                </field>
             </page>
         </xpath>
 
