@@ -5,9 +5,22 @@ from odoo import models, fields, api
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
+    # Test fields
     test_field = fields.Char(string="This is a test field")
     joining_date = fields.Date(string="Joining Date")
     experience_text = fields.Char(string="Experience", compute="_compute_experience_text", store=True)
+
+    # Region (set by buttons)
+    region = fields.Selection([
+        ('india', 'India'),
+        ('uae', 'UAE'),
+    ], string="Region")
+
+    # Client dropdown (options will change based on region)
+    client_choice = fields.Selection(selection=[], string="Client", help="Select city here")
+
+    # Control visibility of client dropdown
+    client_visible = fields.Boolean(default=False)
 
     @api.depends('joining_date')
     def _compute_experience_text(self):
@@ -18,28 +31,43 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-    # Will hold whether user clicked India or UAE
-    region = fields.Selection([
-        ('india', 'India'),
-        ('uae', 'UAE'),
-    ], string="Region")
-
-    client_choice = fields.Selection([], string="Client", placeholder="Select city here...")
-
-    @api.onchange('region')
-    def _onchange_region(self):
-        """Dynamically load clients based on region"""
-        if self.region == 'india':
-            self.client_choice = False
-            self._fields['client_choice'].selection = [
+    # India button
+    def action_india(self):
+        for rec in self:
+            rec.region = 'india'
+            rec.client_visible = True
+            # assign options dynamically
+            rec._fields['client_choice'].selection = [
                 ('noida', 'Noida'),
                 ('chennai', 'Chennai'),
                 ('hyderabad', 'Hyderabad'),
             ]
-        elif self.region == 'uae':
-            self.client_choice = False
-            self._fields['client_choice'].selection = [
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Region Selected",
+                'message': "India selected! Choose your client below.",
+                'sticky': False,
+            }
+        }
+
+    # UAE button
+    def action_uae(self):
+        for rec in self:
+            rec.region = 'uae'
+            rec.client_visible = True
+            rec._fields['client_choice'].selection = [
                 ('dubai_dha', 'Dubai-DHA'),
                 ('dubai_afg', 'Dubai-AFG'),
                 ('abudhabi', 'Abu Dhabi'),
             ]
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': "Region Selected",
+                'message': "UAE selected! Choose your client below.",
+                'sticky': False,
+            }
+        }

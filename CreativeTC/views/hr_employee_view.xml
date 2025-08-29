@@ -24,11 +24,13 @@
                 </group>
 
                 <!-- Client Dropdown (after buttons) -->
-                <group string="Client Selection">
+                <field name="client_choice" invisible="1" modifiers="{'invisible': [('client_visible','=',False)]}" options="{'no_create': True}"/>
+
+                <!-- <group string="Client Selection">
                     <field name="client_choice"
                         options="{'no_create': True}"
                         
-                        modifiers="{'invisible': [('client_visible', '=', False)]}"/>
+                        modifiers="{'invisible': [('client_visible', '=', False)]}"/> -->
                 </group>
             </xpath>
         </field>
