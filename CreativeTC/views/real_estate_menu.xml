@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main App Menu -->
+    <menuitem id="menu_real_estate_root" name="Real Estate"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_real_estate_properties" 
+              name="Properties" 
+              parent="menu_real_estate_root"/>
+</odoo>
