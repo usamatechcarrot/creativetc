@@ -27,7 +27,7 @@
                 <group string="Client Selection">
                     <field name="client_choice"
                         options="{'no_create': True}"
-                        placeholder="Select city here..."
+                        
                         modifiers="{'invisible': [('client_visible', '=', False)]}"/>
                 </group>
             </xpath>
