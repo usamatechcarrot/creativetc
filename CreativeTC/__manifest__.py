@@ -11,6 +11,7 @@
         'views/todo_task_views.xml',
         'views/product_template_view.xml',
         'views/hr_employee_view.xml',
+        'views/a1.xml',
     ],
     'installable': True,
     'application': True,
