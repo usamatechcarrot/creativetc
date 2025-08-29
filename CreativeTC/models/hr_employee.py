@@ -31,36 +31,40 @@ class Employee(models.Model):
             else:
                 rec.experience_text = "Select joining date"
 
-    client_choice = fields.Selection([
-        ('noida', 'Noida'),
-        ('chennai', 'Chennai'),
-        ('hyderabad', 'Hyderabad'),
-        ('dubai', 'Dubai'),
-        ('abu_dhabi', 'Abu Dhabi'),
-        ('sharjah', 'Sharjah'),
-    ], string="Client")
-
     client_visible = fields.Boolean(default=False)
+
+    # client_choice = fields.Selection([
+    #     ('noida', 'Noida'),
+    #     ('chennai', 'Chennai'),
+    #     ('hyderabad', 'Hyderabad'),
+    #     ('dubai', 'Dubai'),
+    #     ('abu_dhabi', 'Abu Dhabi'),
+    #     ('sharjah', 'Sharjah'),
+    # ], string="Client")
+
+    
 
     def action_india(self):
         self.write({'client_visible': True})
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'hr.employee',
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'current',
-        }
+        return{"hello India"}
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'res_model': 'hr.employee',
+        #     'res_id': self.id,
+        #     'view_mode': 'form',
+        #     'target': 'current',
+        # }
 
     def action_uae(self):
         self.write({'client_visible': True})
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'hr.employee',
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'current',
-        }
+        return{"hello UAE"}
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'res_model': 'hr.employee',
+        #     'res_id': self.id,
+        #     'view_mode': 'form',
+        #     'target': 'current',
+        # }
 
     # # India button
     # def action_india(self):
