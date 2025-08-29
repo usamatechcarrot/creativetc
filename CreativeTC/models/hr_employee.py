@@ -14,6 +14,12 @@ class Employee(models.Model):
     region_message = fields.Char(string="Region Message")
     region_visible = fields.Boolean(default=False)
 
+    # Radio buttons (A/B)
+    choice_option = fields.Selection([
+        ('a', 'A'),
+        ('b', 'B'),
+    ], string="Choice")
+
     @api.depends('joining_date')
     def _compute_experience_text(self):
         for rec in self:
