@@ -9,7 +9,7 @@
         'views/stock_location_views.xml',
         'views/product_views.xml',
         'views/todo_task_views.xml',
-       # 'views/hr_employee_views.xml',
+        'views/hr_employee_views.xml',
      ],
     'installable': True,
     'application': False,
