@@ -1,5 +1,4 @@
 <odoo>
-    <!-- Form View -->
     <record id="view_daily_habit_form" model="ir.ui.view">
         <field name="name">daily.habit.form</field>
         <field name="model">creative.daily_habit_tracker</field>
@@ -7,19 +6,20 @@
             <form string="Daily Habit Tracker">
                 <sheet>
                     <h1>Hello!! Welcome to the new App!</h1>
+                    <group>
+                        <field name="name"/>
+                    </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Action -->
     <record id="action_daily_habit" model="ir.actions.act_window">
         <field name="name">Daily Habit</field>
         <field name="res_model">creative.daily_habit_tracker</field>
-        <field name="view_mode">form</field>
+        <field name="view_mode">form,tree</field>
     </record>
 
-    <!-- Menu -->
     <menuitem id="menu_daily_habit_root" name="Habit Tracker"/>
     <menuitem id="menu_daily_habit" name="Daily Habit"
               parent="menu_daily_habit_root" action="action_daily_habit"/>
