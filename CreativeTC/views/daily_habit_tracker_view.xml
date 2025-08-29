@@ -29,7 +29,7 @@
             </form>
         </field>
     </record>
-
+    
     <!-- Action -->
     <record id="action_daily_habit" model="ir.actions.act_window">
         <field name="name">Daily Habits</field>
