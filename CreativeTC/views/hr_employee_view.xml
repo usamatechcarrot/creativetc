@@ -34,7 +34,6 @@
                     <field name="choice_option" widget="radio"
                     modifiers="{'invisible': [('choice_visible','=',False)]}"/>
                 </group>
-
             </xpath>
         </field>
     </record>

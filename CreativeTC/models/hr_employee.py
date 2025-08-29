@@ -14,12 +14,13 @@ class Employee(models.Model):
     region_message = fields.Char(string="Region Message")
     region_visible = fields.Boolean(default=False)
 
-    # Radio buttons (A/B)
+    # Radio Radio buttons (A/B)
     choice_visible = fields.Boolean(default=False)
     choice_option = fields.Selection([
         ('a', 'A'),
         ('b', 'B'),
     ], string="Choice")
+    choice_visible = fields.Boolean(default=False)
 
     @api.depends('joining_date')
     def _compute_experience_text(self):
@@ -43,4 +44,4 @@ class Employee(models.Model):
             rec.region_visible = False
         rec.region_message = False  # clear message
         rec.choice_option = False   # clear radio selection
-        rec.region_visible = False  # hide fields
+        rec.choice_visible = False  # hide fields
