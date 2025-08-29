@@ -15,3 +15,17 @@
     'installable': True,
     'application': False,
 }
+
+{
+    "name": "Daily Habit Tracker",
+    "version": "1.0",
+    "summary": "Track daily habits and progress",
+    "author": "Your Name",
+    "category": "Productivity",
+    "depends": ["base"],
+    "data": [
+        "views/habit_views.xml",
+    ],
+    "installable": True,
+    "application": True,
+}
