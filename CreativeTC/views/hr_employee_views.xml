@@ -3,7 +3,7 @@
     <field name="model">hr.employee</field>
     <field name="inherit_id" ref="hr.view_employee_form"/>
     <field name="arch" type="xml">
-        <xpath expr="//sheet/notebook" position="inside">
+        <xpath expr="//notebook" position="inside">
             <page string="Attendances" name="attendances">
               #  <field name="attendance_ids" readonly="1"/>
             </page>
