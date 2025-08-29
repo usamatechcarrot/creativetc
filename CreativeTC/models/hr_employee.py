@@ -38,3 +38,6 @@ class Employee(models.Model):
         for rec in self:
             rec.region_message = "Hello UAE"
             rec.region_visible = True
+        rec.region_message = False  # clear message
+        rec.choice_option = False   # clear radio selection
+        rec.region_visible = False  # hide fields
