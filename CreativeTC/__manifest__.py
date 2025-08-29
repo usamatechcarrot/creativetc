@@ -1,16 +1,11 @@
 {
-    'name': 'A1 Stock Location Progress Bar',
+    'name': 'A1',
     'version': '18.0',
     'category': 'Inventory',
-    'summary': 'Show progress bar of stock usage in each location',
-    'depends': ['stock', 'base', 'project', 'project_todo', 'product', 'hr'],
+    'summary': 'A1 Show',
+    'depends': [ 'base'],
 
     'data': [
-        'views/stock_location_views.xml',
-        'views/product_views.xml',
-        'views/todo_task_views.xml',
-        'views/product_template_view.xml',
-        'views/hr_employee_view.xml',
         'views/a1.xml',
     ],
     'installable': True,
