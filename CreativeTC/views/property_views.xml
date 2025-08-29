@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Property Tree/List View -->
     <record id="view_real_estate_property_tree" model="ir.ui.view">
         <field name="name">real.estate.property.tree</field>
         <field name="model">real.estate.property</field>
@@ -11,12 +9,11 @@
         </field>
     </record>
 
-    <!-- Property Form View -->
     <record id="view_real_estate_property_form" model="ir.ui.view">
         <field name="name">real.estate.property.form</field>
         <field name="model">real.estate.property</field>
         <field name="arch" type="xml">
-            <form string="Property">
+            <form>
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -26,16 +23,18 @@
         </field>
     </record>
 
-    <!-- Action to open Property views -->
+    <!-- Menu -->
+    <menuitem id="menu_real_estate_root" name="Real Estate"/>
+
+    <menuitem id="menu_real_estate_property" 
+              name="Properties" 
+              parent="menu_real_estate_root" 
+              action="action_real_estate_property"/>
+
+    <!-- Action -->
     <record id="action_real_estate_property" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">real.estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <!-- Menu to access Properties -->
-    <menuitem id="menu_real_estate_property_action"
-              name="All Properties"
-              parent="menu_real_estate_properties"
-              action="action_real_estate_property"/>
 </odoo>
