@@ -15,6 +15,7 @@ class Employee(models.Model):
     region_visible = fields.Boolean(default=False)
 
     # Radio buttons (A/B)
+    choice_visible = fields.Boolean(default=False)
     choice_option = fields.Selection([
         ('a', 'A'),
         ('b', 'B'),
@@ -33,11 +34,13 @@ class Employee(models.Model):
         for rec in self:
             rec.region_message = "Hello India"
             rec.region_visible = True
+            rec.choice_visible = True     # show the radio buttons
+            rec.choice_option = False     # clear any old choice
 
     def action_uae(self):
         for rec in self:
             rec.region_message = "Hello UAE"
-            rec.region_visible = True
+            rec.region_visible = False
         rec.region_message = False  # clear message
         rec.choice_option = False   # clear radio selection
         rec.region_visible = False  # hide fields
