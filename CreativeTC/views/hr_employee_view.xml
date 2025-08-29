@@ -30,8 +30,8 @@
                     <field name="client_choice"
                         options="{'no_create': True}"
                         
-                        modifiers="{'invisible': [('client_visible', '=', False)]}"/> -->
-                </group>
+                        modifiers="{'invisible': [('client_visible', '=', False)]}"/>
+                </group> -->
             </xpath>
         </field>
     </record>
