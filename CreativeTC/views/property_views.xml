@@ -1,17 +1,5 @@
 <odoo>
-    <!-- Tree view -->
-    <record id="view_real_estate_property_tree" model="ir.ui.view">
-        <field name="name">real.estate.property.tree</field>
-        <field name="model">real.estate.property</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-
-    <!-- Form view -->
+    <!-- Form view only -->
     <record id="view_real_estate_property_form" model="ir.ui.view">
         <field name="name">real.estate.property.form</field>
         <field name="model">real.estate.property</field>
@@ -26,11 +14,11 @@
         </field>
     </record>
 
-    <!-- Action -->
+    <!-- Action (only form view) -->
     <record id="action_real_estate_property" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">real.estate.property</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">form</field>
     </record>
 
     <!-- Menu -->
