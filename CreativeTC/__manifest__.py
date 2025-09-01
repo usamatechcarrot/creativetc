@@ -1,13 +1,12 @@
 {
-    'name': 'Stock Location Progress Bar',
+    'name': 'Real Estate',
     'version': '18.0',
-    'category': 'Inventory',
-    'summary': 'Show progress bar of stock usage in each location',
-    'depends': ['stock'],
+    'category': 'Real Estate',
+    'summary': 'Manage Real Estate Properties',
+    'depends': ['base'],
     'data': [
-        'views/stock_location_views.xml',
-        'views/product_views.xml',
+        'views/property_views.xml',
     ],
     'installable': True,
-    'application': False,
+    'application': True,
 }
