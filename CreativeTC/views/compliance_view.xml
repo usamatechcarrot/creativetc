@@ -1,0 +1,15 @@
+<record id="view_compliance_calendar" model="ir.ui.view">
+    <field name="name">compliance.calendar.view.calendar</field>
+    <field name="model">compliance.calendar</field>
+    <field name="arch" type="xml">
+        <calendar string="Compliance Calendar"
+                  date_start="due_date"
+                  color="status"
+                  event_open_popup="true">
+            <field name="name"/>
+            <field name="office_id"/>
+            <field name="location_id"/>
+            <field name="responsible_id"/>
+        </calendar>
+    </field>
+</record>
