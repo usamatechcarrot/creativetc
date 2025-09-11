@@ -10,7 +10,7 @@ class ComplianceCalendar(models.Model):
         ("techcarrot fz llc", "techcarrot fz llc"),
         ("techcarrot technologies fz llc", "techcarrot technologies fz llc")
     ], default="techcarrot india pvt. ltd")
-   location_id = fields.Selection([
+    location_id = fields.Selection([
         ("Noida", "Noida"),
         ("Chennai", "Chennai"),
         ("Faridabad", "Faridabad")
