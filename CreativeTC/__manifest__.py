@@ -10,7 +10,6 @@
         'views/product_views.xml',
         'views/todo_task_views.xml',
         'views/hr_employee_views.xml',
-        'security/ir.model.access.csv',
         'views/compliance_calendar_views.xml',
      ],
     'installable': True,
