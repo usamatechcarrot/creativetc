@@ -4,7 +4,6 @@
     <field name="arch" type="xml">
         <calendar string="Compliance Calendar"
                   date_start="due_date"
-                  color="status"
                   event_open_popup="true">
             <field name="name"/>
             <field name="office_id"/>
